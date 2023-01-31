@@ -105,13 +105,8 @@
 		BC9A6840298934300027A87F /* pokedex */ = {
 			isa = PBXGroup;
 			children = (
-				BC9A6841298934300027A87F /* AppDelegate.swift */,
-				BC9A6843298934300027A87F /* SceneDelegate.swift */,
-				BC9A6871298938900027A87F /* TabBarViewController.swift */,
-				BC9A687C29893A2B0027A87F /* Dashboard */,
-				BC9A687B29893A200027A87F /* MyCollection */,
+				BC9A687E298942040027A87F /* Features */,
 				BC9A684A298934320027A87F /* Assets.xcassets */,
-				BC9A684C298934320027A87F /* LaunchScreen.storyboard */,
 				BC9A684F298934320027A87F /* Info.plist */,
 			);
 			path = pokedex;
@@ -150,6 +145,27 @@
 				BC9A6874298939BB0027A87F /* DashboardViewController.xib */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		BC9A687D298941EF0027A87F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BC9A6841298934300027A87F /* AppDelegate.swift */,
+				BC9A6843298934300027A87F /* SceneDelegate.swift */,
+				BC9A6871298938900027A87F /* TabBarViewController.swift */,
+				BC9A684C298934320027A87F /* LaunchScreen.storyboard */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		BC9A687E298942040027A87F /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				BC9A687D298941EF0027A87F /* Base */,
+				BC9A687C29893A2B0027A87F /* Dashboard */,
+				BC9A687B29893A200027A87F /* MyCollection */,
+			);
+			path = Features;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
