@@ -9,6 +9,7 @@ import UIKit
 
 class DashboardViewController: UIViewController {
     @IBOutlet weak var searchPokemonTextField: UITextField!
+    @IBOutlet weak var pokemonListCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,7 @@ class DashboardViewController: UIViewController {
     private func configureViews() {
         configureNavigationBar()
         configureSearchPokemonTextField()
+        configureCollectionView()
     }
     
     private func configureNavigationBar() {
@@ -34,5 +36,32 @@ class DashboardViewController: UIViewController {
             string: "Search",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
         )
+    }
+    
+    private func configureCollectionView() {
+        self.pokemonListCollectionView.register(UINib(nibName: "PokemonListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PokemonListCollectionViewCell")
+        self.pokemonListCollectionView.dataSource = self
+        self.pokemonListCollectionView.delegate = self
+    }
+}
+
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonListCollectionViewCell", for: indexPath) as? PokemonListCollectionViewCell else { return UICollectionViewCell() }
+        cell.configureContent(name: "Bulbasaur", number: "#001", typeOne: "Grass", typeTwo: "Poison", image: "dummy_Pokemon")
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 168, height: 125)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
     }
 }

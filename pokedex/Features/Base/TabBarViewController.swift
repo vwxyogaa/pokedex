@@ -23,7 +23,6 @@ class TabBarViewController: UITabBarController {
     
     private func makeNavigation(viewController: UIViewController) -> UINavigationController {
         let navigation = UINavigationController(rootViewController: viewController)
-        navigation.navigationBar.prefersLargeTitles = false
         return navigation
     }
     

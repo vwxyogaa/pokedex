@@ -19,6 +19,8 @@
 		BC9A6876298939BB0027A87F /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9A6874298939BB0027A87F /* DashboardViewController.xib */; };
 		BC9A687929893A190027A87F /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9A687729893A190027A87F /* MyCollectionViewController.swift */; };
 		BC9A687A29893A190027A87F /* MyCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9A687829893A190027A87F /* MyCollectionViewController.xib */; };
+		E1BF746C298AE1F800A2FE45 /* PokemonListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BF746A298AE1F800A2FE45 /* PokemonListCollectionViewCell.swift */; };
+		E1BF746D298AE1F800A2FE45 /* PokemonListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1BF746B298AE1F800A2FE45 /* PokemonListCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		BC9A6874298939BB0027A87F /* DashboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
 		BC9A687729893A190027A87F /* MyCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
 		BC9A687829893A190027A87F /* MyCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCollectionViewController.xib; sourceTree = "<group>"; };
+		E1BF746A298AE1F800A2FE45 /* PokemonListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListCollectionViewCell.swift; sourceTree = "<group>"; };
+		E1BF746B298AE1F800A2FE45 /* PokemonListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonListCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 			children = (
 				BC9A6873298939BB0027A87F /* DashboardViewController.swift */,
 				BC9A6874298939BB0027A87F /* DashboardViewController.xib */,
+				E1BF746E298AE1FE00A2FE45 /* Cell */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -166,6 +171,15 @@
 				BC9A687B29893A200027A87F /* MyCollection */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		E1BF746E298AE1FE00A2FE45 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E1BF746A298AE1F800A2FE45 /* PokemonListCollectionViewCell.swift */,
+				E1BF746B298AE1F800A2FE45 /* PokemonListCollectionViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC9A687A29893A190027A87F /* MyCollectionViewController.xib in Resources */,
+				E1BF746D298AE1F800A2FE45 /* PokemonListCollectionViewCell.xib in Resources */,
 				BC9A684E298934320027A87F /* LaunchScreen.storyboard in Resources */,
 				BC9A684B298934320027A87F /* Assets.xcassets in Resources */,
 				BC9A6876298939BB0027A87F /* DashboardViewController.xib in Resources */,
@@ -300,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1BF746C298AE1F800A2FE45 /* PokemonListCollectionViewCell.swift in Sources */,
 				BC9A6842298934300027A87F /* AppDelegate.swift in Sources */,
 				BC9A6872298938900027A87F /* TabBarViewController.swift in Sources */,
 				BC9A6844298934300027A87F /* SceneDelegate.swift in Sources */,
