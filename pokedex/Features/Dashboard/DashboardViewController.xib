@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DashboardViewController" customModule="pokedex" customModuleProvider="target">
             <connections>
+                <outlet property="searchPokemonTextField" destination="d9M-8O-AJ1" id="2jz-e6-Jk2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,12 +20,42 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9L-mQ-wUg">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="131"/>
+                    <color key="backgroundColor" name="BlueColor"/>
+                </view>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d9M-8O-AJ1">
+                    <rect key="frame" x="20" y="75" width="353" height="40"/>
+                    <color key="backgroundColor" name="GrayColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="mL6-0k-Vjw"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="139" y="21"/>
+            <constraints>
+                <constraint firstItem="m9L-mQ-wUg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fzp-bf-L75"/>
+                <constraint firstItem="d9M-8O-AJ1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="IOG-L5-3RY"/>
+                <constraint firstItem="d9M-8O-AJ1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="LZs-zP-ciz"/>
+                <constraint firstItem="m9L-mQ-wUg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZR7-da-Vd0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="m9L-mQ-wUg" secondAttribute="trailing" id="aZH-tW-PBc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d9M-8O-AJ1" secondAttribute="trailing" constant="20" id="igF-JK-gmr"/>
+                <constraint firstItem="m9L-mQ-wUg" firstAttribute="bottom" secondItem="d9M-8O-AJ1" secondAttribute="bottom" constant="16" id="uSh-Oo-Nbh"/>
+            </constraints>
+            <point key="canvasLocation" x="242" y="25"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="BlueColor">
+            <color red="0.21568627450980393" green="0.6470588235294118" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="GrayColor">
+            <color red="0.94117647058823528" green="0.94901960784313721" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
