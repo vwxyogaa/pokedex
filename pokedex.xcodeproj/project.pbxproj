@@ -116,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				BC9A687E298942040027A87F /* Features */,
-				BC9A684A298934320027A87F /* Assets.xcassets */,
+				BC9A689C298BBF970027A87F /* Supporting Files */,
 				BC9A684F298934320027A87F /* Info.plist */,
 			);
 			path = pokedex;
@@ -161,10 +161,7 @@
 		BC9A687D298941EF0027A87F /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				BC9A6841298934300027A87F /* AppDelegate.swift */,
-				BC9A6843298934300027A87F /* SceneDelegate.swift */,
 				BC9A6871298938900027A87F /* TabBarViewController.swift */,
-				BC9A684C298934320027A87F /* LaunchScreen.storyboard */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -177,6 +174,17 @@
 				BC9A687B29893A200027A87F /* MyCollection */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		BC9A689C298BBF970027A87F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC9A6841298934300027A87F /* AppDelegate.swift */,
+				BC9A6843298934300027A87F /* SceneDelegate.swift */,
+				BC9A684A298934320027A87F /* Assets.xcassets */,
+				BC9A684C298934320027A87F /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		E1BF746E298AE1FE00A2FE45 /* Cell */ = {
