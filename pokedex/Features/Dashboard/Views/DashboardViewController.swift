@@ -12,9 +12,19 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var searchPokemonTextField: UITextField!
     @IBOutlet weak var pokemonListCollectionView: UICollectionView!
     
+    var viewModel: DashboardViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
+        viewModel.getPokemonInformation()
+        initObservers()
+    }
+    
+    private func initObservers() {
+        viewModel.pokemonList.observe(on: self) { _ in
+            self.pokemonListCollectionView.reloadData()
+        }
     }
     
     private func configureViews() {
@@ -53,12 +63,13 @@ class DashboardViewController: UIViewController {
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.pokemonList.value?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonListCollectionViewCell", for: indexPath) as? PokemonListCollectionViewCell else { return UICollectionViewCell() }
-        cell.configureContent(name: "Bulbasaur", number: "#001", typeOne: "Grass", typeTwo: "Poison", image: "dummy_Pokemon")
+        let pokemon = viewModel.pokemonList.value?[indexPath.row]
+        cell.configureContent(name: pokemon?.name ?? "-", number: "#\(indexPath.row + 1)", typeOne: "-", typeTwo: "-", imageUrl: "")
         return cell
     }
     

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PokemonListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
@@ -28,11 +29,13 @@ class PokemonListCollectionViewCell: UICollectionViewCell {
         self.containerTypeTwoView.layer.cornerRadius = 5
     }
     
-    func configureContent(name: String, number: String, typeOne: String, typeTwo: String, image: String) {
+    func configureContent(name: String, number: String, typeOne: String, typeTwo: String, imageUrl: String) {
         self.namePokemonLabel.text = name
         self.numberPokemonLabel.text = number
         self.typeOnePokemonLabel.text = typeOne
         self.typeTwoPokemonLabel.text = typeTwo
-        self.pokemonImageView.image = UIImage(named: image)
+        if let url = URL(string: imageUrl) {
+            self.pokemonImageView.kf.setImage(with: url)
+        }
     }
 }

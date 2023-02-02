@@ -31,6 +31,8 @@ class TabBarViewController: UITabBarController {
         dashboardController.tabBarItem.title = "Dashboard"
         dashboardController.tabBarItem.image = UIImage(systemName: "house")
         dashboardController.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
+        let dashboardViewModel = DashboardViewModel()
+        dashboardController.viewModel = dashboardViewModel
         return dashboardController
     }
     
