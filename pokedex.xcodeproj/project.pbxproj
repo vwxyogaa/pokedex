@@ -19,6 +19,9 @@
 		BC9A6876298939BB0027A87F /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9A6874298939BB0027A87F /* DashboardViewController.xib */; };
 		BC9A687929893A190027A87F /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9A687729893A190027A87F /* MyCollectionViewController.swift */; };
 		BC9A687A29893A190027A87F /* MyCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9A687829893A190027A87F /* MyCollectionViewController.xib */; };
+		BC9A6895298BBE5E0027A87F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BC9A6894298BBE5E0027A87F /* Alamofire */; };
+		BC9A6898298BBE810027A87F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BC9A6897298BBE810027A87F /* Kingfisher */; };
+		BC9A689B298BBEB90027A87F /* netfox in Frameworks */ = {isa = PBXBuildFile; productRef = BC9A689A298BBEB90027A87F /* netfox */; };
 		E1BF746C298AE1F800A2FE45 /* PokemonListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BF746A298AE1F800A2FE45 /* PokemonListCollectionViewCell.swift */; };
 		E1BF746D298AE1F800A2FE45 /* PokemonListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1BF746B298AE1F800A2FE45 /* PokemonListCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -66,6 +69,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC9A6898298BBE810027A87F /* Kingfisher in Frameworks */,
+				BC9A6895298BBE5E0027A87F /* Alamofire in Frameworks */,
+				BC9A689B298BBEB90027A87F /* netfox in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +204,11 @@
 			dependencies = (
 			);
 			name = pokedex;
+			packageProductDependencies = (
+				BC9A6894298BBE5E0027A87F /* Alamofire */,
+				BC9A6897298BBE810027A87F /* Kingfisher */,
+				BC9A689A298BBEB90027A87F /* netfox */,
+			);
 			productName = pokedex;
 			productReference = BC9A683E298934300027A87F /* pokedex.app */;
 			productType = "com.apple.product-type.application";
@@ -270,6 +281,11 @@
 				Base,
 			);
 			mainGroup = BC9A6835298934300027A87F;
+			packageReferences = (
+				BC9A6893298BBE5E0027A87F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				BC9A6896298BBE810027A87F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				BC9A6899298BBEB90027A87F /* XCRemoteSwiftPackageReference "netfox" */,
+			);
 			productRefGroup = BC9A683F298934300027A87F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -654,6 +670,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BC9A6893298BBE5E0027A87F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		BC9A6896298BBE810027A87F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		BC9A6899298BBEB90027A87F /* XCRemoteSwiftPackageReference "netfox" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kasketis/netfox";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BC9A6894298BBE5E0027A87F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC9A6893298BBE5E0027A87F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		BC9A6897298BBE810027A87F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC9A6896298BBE810027A87F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		BC9A689A298BBEB90027A87F /* netfox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC9A6899298BBEB90027A87F /* XCRemoteSwiftPackageReference "netfox" */;
+			productName = netfox;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BC9A6836298934300027A87F /* Project object */;
 }
