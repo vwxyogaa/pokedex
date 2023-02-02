@@ -8,6 +8,7 @@
 import UIKit
 
 class DashboardViewController: UIViewController {
+    @IBOutlet weak var backgroundContainerView: UIView!
     @IBOutlet weak var searchPokemonTextField: UITextField!
     @IBOutlet weak var pokemonListCollectionView: UICollectionView!
     
@@ -27,6 +28,10 @@ class DashboardViewController: UIViewController {
         self.navigationItem.title = "Pokedex"
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.standardAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        backgroundContainerView.clipsToBounds = true
+        backgroundContainerView.layer.cornerRadius = 10
+        backgroundContainerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
     }
     
     private func configureSearchPokemonTextField() {
@@ -62,6 +67,10 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
     }
 }
