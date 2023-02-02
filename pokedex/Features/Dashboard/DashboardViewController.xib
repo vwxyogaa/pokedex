@@ -36,7 +36,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qWT-SP-FIj">
-                    <rect key="frame" x="20" y="131" width="353" height="687"/>
+                    <rect key="frame" x="0.0" y="131" width="393" height="687"/>
                     <color key="backgroundColor" name="GrayColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2fW-AS-G2U">
                         <size key="itemSize" width="128" height="128"/>
@@ -49,7 +49,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="GrayColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qWT-SP-FIj" secondAttribute="trailing" constant="20" id="24n-Cg-3fL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qWT-SP-FIj" secondAttribute="trailing" id="24n-Cg-3fL"/>
                 <constraint firstItem="qWT-SP-FIj" firstAttribute="top" secondItem="m9L-mQ-wUg" secondAttribute="bottom" id="DGw-Iy-wRl"/>
                 <constraint firstItem="m9L-mQ-wUg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fzp-bf-L75"/>
                 <constraint firstItem="d9M-8O-AJ1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="IOG-L5-3RY"/>
@@ -57,7 +57,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="qWT-SP-FIj" secondAttribute="bottom" id="NJj-dB-h8N"/>
                 <constraint firstItem="m9L-mQ-wUg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZR7-da-Vd0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="m9L-mQ-wUg" secondAttribute="trailing" id="aZH-tW-PBc"/>
-                <constraint firstItem="qWT-SP-FIj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="eql-iG-kYo"/>
+                <constraint firstItem="qWT-SP-FIj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eql-iG-kYo"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d9M-8O-AJ1" secondAttribute="trailing" constant="20" id="igF-JK-gmr"/>
                 <constraint firstItem="m9L-mQ-wUg" firstAttribute="bottom" secondItem="d9M-8O-AJ1" secondAttribute="bottom" constant="16" id="uSh-Oo-Nbh"/>
             </constraints>
