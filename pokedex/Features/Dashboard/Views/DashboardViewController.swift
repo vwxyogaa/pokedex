@@ -21,6 +21,11 @@ class DashboardViewController: UIViewController {
         configureData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     private func configureViews() {
         configureNavigationBar()
         configureSearchPokemonTextField()
@@ -76,8 +81,15 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonListCollectionViewCell", for: indexPath) as? PokemonListCollectionViewCell else { return UICollectionViewCell() }
         let pokemon = viewModel.pokemonList.value?[indexPath.row]
         let pokemonDetail = viewModel.pokemonDetail[indexPath.row]
-        cell.configureContent(name: pokemon?.name ?? "-", number: "#\(indexPath.row + 1)", typeOne: pokemonDetail.types?.first?.type?.name ?? "-", typeTwo: pokemonDetail.types?.last?.type?.name ?? "-", imageUrl: pokemonDetail.sprites?.other?.officialArtwork?.frontDefault ?? "")
+        cell.configureContent(name: pokemon?.name?.localizedCapitalized ?? "-", number: "#\(indexPath.row + 1)", typeOne: pokemonDetail.types?.first?.type?.name ?? "-", typeTwo: pokemonDetail.types?.last?.type?.name ?? "-", imageUrl: pokemonDetail.sprites?.other?.officialArtwork?.frontDefault ?? "")
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailViewController = DetailPokemonViewController()
+        detailViewController.pokemonDetail = viewModel.pokemonDetail[indexPath.row]
+        detailViewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

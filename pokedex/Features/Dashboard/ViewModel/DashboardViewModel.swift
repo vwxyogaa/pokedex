@@ -38,8 +38,8 @@ class DashboardViewModel {
         self.repository.getPokemonDetail(url: url) { result in
             if let result {
                 self.pokemonDetail.append(result)
-                self.semaphore.signal()
             }
+            self.semaphore.signal()
             self.group.leave()
         }
     }
