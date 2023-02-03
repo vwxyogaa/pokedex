@@ -17,20 +17,26 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
-        viewModel.getPokemonInformation()
         initObservers()
-    }
-    
-    private func initObservers() {
-        viewModel.pokemonList.observe(on: self) { _ in
-            self.pokemonListCollectionView.reloadData()
-        }
+        configureData()
     }
     
     private func configureViews() {
         configureNavigationBar()
         configureSearchPokemonTextField()
         configureCollectionView()
+    }
+    
+    private func configureData() {
+        viewModel.getPokemonInformation()
+    }
+    
+    private func initObservers() {
+        viewModel.completeRequest.observe(on: self) { requestComplete in
+            if requestComplete {
+                self.pokemonListCollectionView.reloadData()
+            }
+        }
     }
     
     private func configureNavigationBar() {
@@ -69,7 +75,8 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonListCollectionViewCell", for: indexPath) as? PokemonListCollectionViewCell else { return UICollectionViewCell() }
         let pokemon = viewModel.pokemonList.value?[indexPath.row]
-        cell.configureContent(name: pokemon?.name ?? "-", number: "#\(indexPath.row + 1)", typeOne: "-", typeTwo: "-", imageUrl: "")
+        let pokemonDetail = viewModel.pokemonDetail[indexPath.row]
+        cell.configureContent(name: pokemon?.name ?? "-", number: "#\(indexPath.row + 1)", typeOne: pokemonDetail.types?.first?.type?.name ?? "-", typeTwo: pokemonDetail.types?.last?.type?.name ?? "-", imageUrl: pokemonDetail.sprites?.other?.officialArtwork?.frontDefault ?? "")
         return cell
     }
     

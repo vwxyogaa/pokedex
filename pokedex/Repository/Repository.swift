@@ -28,4 +28,15 @@ class Repository: RepositoryProtocol {
             }
         }
     }
+    
+    func getPokemonDetail(url: String, completion: @escaping (Pokemon?) -> Void) {
+        AF.request(url).responseDecodable(of: Pokemon.self) { response in
+            switch response.result {
+            case .success(let data):
+                completion(data)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

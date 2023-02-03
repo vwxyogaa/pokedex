@@ -27,7 +27,7 @@ class TabBarViewController: UITabBarController {
     }
     
     private func createDashboardTab() -> UIViewController {
-        let dashboardController = DashboardViewController(nibName: "DashboardViewController", bundle: nil)
+        let dashboardController = DashboardViewController()
         dashboardController.tabBarItem.title = "Dashboard"
         dashboardController.tabBarItem.image = UIImage(systemName: "house")
         dashboardController.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
@@ -37,7 +37,7 @@ class TabBarViewController: UITabBarController {
     }
     
     private func createMyCollectionTab() -> UIViewController {
-        let myCollectionController = MyCollectionViewController(nibName: "MyCollectionViewController", bundle: nil)
+        let myCollectionController = MyCollectionViewController()
         myCollectionController.tabBarItem.title = "My Collection"
         myCollectionController.tabBarItem.image = UIImage(systemName: "bookmark")
         myCollectionController.tabBarItem.selectedImage = UIImage(systemName: "bookmark.fill")
