@@ -6,16 +6,20 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailPokemonViewController" customModule="pokedex" customModuleProvider="target">
             <connections>
                 <outlet property="backButton" destination="OQw-FP-QYR" id="xNX-B6-gfS"/>
+                <outlet property="catchButton" destination="L9K-GO-DYv" id="OFs-dv-3Cz"/>
+                <outlet property="contentStatsView" destination="Fk2-hW-wny" id="FVL-ZH-vik"/>
                 <outlet property="imagePokemon" destination="05g-TA-qmk" id="wNG-vz-CQj"/>
                 <outlet property="namePokemonLabel" destination="1gF-qA-CJK" id="Iph-pJ-o5c"/>
                 <outlet property="numberPokemonLabel" destination="3de-jn-r32" id="YAW-14-g3g"/>
                 <outlet property="statsBackgroundView" destination="WHO-Yz-EMs" id="S2c-hY-M6D"/>
+                <outlet property="statsSegmentedController" destination="iaR-jh-48M" id="29b-Qi-4hY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,10 +28,6 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WHO-Yz-EMs">
-                    <rect key="frame" x="0.0" y="354" width="393" height="498"/>
-                    <color key="backgroundColor" name="GrayColor"/>
-                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQw-FP-QYR">
                     <rect key="frame" x="8" y="67" width="30" height="30"/>
                     <constraints>
@@ -39,13 +39,6 @@
                         <color key="baseForegroundColor" name="GrayColor"/>
                     </buttonConfiguration>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="05g-TA-qmk">
-                    <rect key="frame" x="96.666666666666686" y="204" width="200" height="200"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="200" id="URF-qS-Drm"/>
-                        <constraint firstAttribute="height" constant="200" id="kG3-Aj-X8j"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3de-jn-r32">
                     <rect key="frame" x="20" y="101" width="353" height="24"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
@@ -53,16 +46,65 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gF-qA-CJK">
-                    <rect key="frame" x="20" y="125" width="353" height="29"/>
+                    <rect key="frame" x="20" y="125" width="353" height="18"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                     <color key="textColor" name="GrayColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WHO-Yz-EMs">
+                    <rect key="frame" x="0.0" y="401" width="393" height="451"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="s5m-6S-Hqo">
+                            <rect key="frame" x="0.0" y="35" width="393" height="346"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iaR-jh-48M" customClass="CustomSegmentedControl" customModule="pokedex" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="dRi-Fo-GKH"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fk2-hW-wny">
+                                    <rect key="frame" x="0.0" y="50" width="393" height="296"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9K-GO-DYv">
+                            <rect key="frame" x="20" y="391" width="353" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="pQs-Xz-h6w"/>
+                            </constraints>
+                            <color key="tintColor" name="GrayColor"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Catch">
+                                <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                            </buttonConfiguration>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="GrayColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="L9K-GO-DYv" secondAttribute="trailing" constant="20" id="1Oc-OW-dhj"/>
+                        <constraint firstItem="s5m-6S-Hqo" firstAttribute="leading" secondItem="WHO-Yz-EMs" secondAttribute="leading" id="9zy-72-sSH"/>
+                        <constraint firstAttribute="bottom" secondItem="L9K-GO-DYv" secondAttribute="bottom" constant="20" id="KMz-aL-dGR"/>
+                        <constraint firstItem="L9K-GO-DYv" firstAttribute="top" secondItem="s5m-6S-Hqo" secondAttribute="bottom" constant="10" id="PCe-70-byr"/>
+                        <constraint firstItem="L9K-GO-DYv" firstAttribute="leading" secondItem="WHO-Yz-EMs" secondAttribute="leading" constant="20" id="SP2-dF-LZi"/>
+                        <constraint firstAttribute="trailing" secondItem="s5m-6S-Hqo" secondAttribute="trailing" id="dYf-02-ta7"/>
+                        <constraint firstItem="s5m-6S-Hqo" firstAttribute="top" secondItem="WHO-Yz-EMs" secondAttribute="top" constant="35" id="pI0-nJ-ZJO"/>
+                    </constraints>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="05g-TA-qmk">
+                    <rect key="frame" x="46.666666666666657" y="151" width="300" height="300"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="URF-qS-Drm"/>
+                        <constraint firstAttribute="height" constant="300" id="kG3-Aj-X8j"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="BlueColor"/>
             <constraints>
-                <constraint firstItem="05g-TA-qmk" firstAttribute="top" secondItem="1gF-qA-CJK" secondAttribute="bottom" constant="50" id="3o0-dT-yBp"/>
+                <constraint firstItem="05g-TA-qmk" firstAttribute="top" secondItem="1gF-qA-CJK" secondAttribute="bottom" constant="8" id="3o0-dT-yBp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3de-jn-r32" secondAttribute="trailing" constant="20" id="B2Q-cS-B00"/>
                 <constraint firstItem="1gF-qA-CJK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Lfu-N7-neK"/>
                 <constraint firstItem="WHO-Yz-EMs" firstAttribute="top" secondItem="05g-TA-qmk" secondAttribute="bottom" constant="-50" id="Lky-M2-NQV"/>
@@ -88,5 +130,8 @@
         <namedColor name="GrayColor">
             <color red="0.94117647058823528" green="0.94901960784313721" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

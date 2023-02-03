@@ -19,7 +19,7 @@ class DashboardViewModel {
     
     func getPokemonInformation() {
         group.enter()
-        repository.getPokemonList(size: 20) { result in
+        repository.getPokemonList(size: 10) { result in
             self.pokemonList.value = result?.results
             guard let pokemon = result?.results else { return }
             DispatchQueue.global().async {
