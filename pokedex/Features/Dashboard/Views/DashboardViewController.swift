@@ -37,10 +37,8 @@ class DashboardViewController: UIViewController {
     }
     
     private func initObservers() {
-        viewModel.completeRequest.observe(on: self) { requestComplete in
-            if requestComplete {
-                self.pokemonListCollectionView.reloadData()
-            }
+        viewModel.pokemons.observe(on: self) { _ in
+            self.pokemonListCollectionView.reloadData()
         }
     }
     
@@ -56,8 +54,10 @@ class DashboardViewController: UIViewController {
     }
     
     private func configureSearchPokemonTextField() {
+        self.searchPokemonTextField.delegate = self
         self.searchPokemonTextField.layer.cornerRadius = 10
         self.searchPokemonTextField.layer.masksToBounds = true
+        self.searchPokemonTextField.clearButtonMode = .whileEditing
         searchPokemonTextField.attributedPlaceholder = NSAttributedString(
             string: "Search",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
@@ -74,14 +74,13 @@ class DashboardViewController: UIViewController {
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.pokemonList.value?.count ?? 0
+        return viewModel.pokemons.value?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonListCollectionViewCell", for: indexPath) as? PokemonListCollectionViewCell else { return UICollectionViewCell() }
-        let pokemon = viewModel.pokemonList.value?[indexPath.row]
-        let pokemonDetail = viewModel.pokemonDetail[indexPath.row]
-        cell.configureContent(name: pokemon?.name?.localizedCapitalized ?? "-", number: "#\(indexPath.row + 1)", typeOne: pokemonDetail.types?.first?.type?.name ?? "-", typeTwo: pokemonDetail.types?.last?.type?.name ?? "-", imageUrl: pokemonDetail.sprites?.other?.officialArtwork?.frontDefault ?? "")
+        let pokemon = viewModel.pokemons.value?[indexPath.row]
+        cell.configureContent(name: pokemon?.name?.capitalized ?? "-", number: "#\(indexPath.row + 1)", typeOne: pokemon?.types?.first?.type?.name?.capitalized ?? "-", typeTwo: pokemon?.types?.last?.type?.name?.capitalized ?? "-", imageUrl: pokemon?.sprites?.other?.officialArtwork?.frontDefault ?? "")
         return cell
     }
     
@@ -95,12 +94,30 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 168, height: 125)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 20)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension DashboardViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
+        if text.count > 3 {
+            viewModel.searchPokemon(query: text)
+        } else {
+            viewModel.searchPokemon(query: "")
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        viewModel.searchPokemon(query: textField.text ?? "")
+        return true
     }
 }
