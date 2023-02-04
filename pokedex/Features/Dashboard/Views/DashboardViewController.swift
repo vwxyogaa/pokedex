@@ -33,7 +33,7 @@ class DashboardViewController: UIViewController {
     }
     
     private func configureData() {
-        viewModel.getPokemonInformation()
+        viewModel.getPokemonList()
     }
     
     private func initObservers() {

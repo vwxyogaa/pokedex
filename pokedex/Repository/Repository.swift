@@ -10,6 +10,7 @@ import Alamofire
 
 protocol RepositoryProtocol {
     func getPokemonList(size: Int, completion: @escaping (PokemonList?) -> Void)
+    func getPokemonDetail(name: String, completion: @escaping (Pokemon?) -> Void)
 }
 
 class Repository: RepositoryProtocol {
@@ -17,9 +18,9 @@ class Repository: RepositoryProtocol {
     
     private let baseURL = "https://pokeapi.co/api/v2/pokemon"
     
-    func getPokemonList(size: Int, completion: @escaping (PokemonList?) -> Void) {
+    func getPokemonList(size: Int, completion: @escaping(PokemonList?) -> Void) {
         let fullUrl = "\(baseURL)?limit=\(size)"
-        AF.request(fullUrl).responseDecodable(of: PokemonList.self) { response in
+        AF.request(fullUrl).validate().responseDecodable(of: PokemonList.self) { response in
             switch response.result {
             case .success(let data):
                 completion(data)
@@ -29,8 +30,9 @@ class Repository: RepositoryProtocol {
         }
     }
     
-    func getPokemonDetail(url: String, completion: @escaping (Pokemon?) -> Void) {
-        AF.request(url).responseDecodable(of: Pokemon.self) { response in
+    func getPokemonDetail(name: String, completion: @escaping(Pokemon?) -> Void) {
+        let fullUrl = "\(baseURL)/\(name)"
+        AF.request(fullUrl).validate().responseDecodable(of: Pokemon.self) { response in
             switch response.result {
             case .success(let data):
                 completion(data)
