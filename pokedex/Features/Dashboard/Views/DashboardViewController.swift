@@ -23,11 +23,16 @@ class DashboardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     private func configureViews() {
-        configureNavigationBar()
+        configureBackgroundContainerView()
         configureSearchPokemonTextField()
         configureCollectionView()
     }
@@ -42,12 +47,7 @@ class DashboardViewController: UIViewController {
         }
     }
     
-    private func configureNavigationBar() {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.title = "Pokedex"
-        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        self.navigationController?.navigationBar.standardAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        
+    private func configureBackgroundContainerView() {
         backgroundContainerView.clipsToBounds = true
         backgroundContainerView.layer.cornerRadius = 10
         backgroundContainerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]

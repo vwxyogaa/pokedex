@@ -23,11 +23,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9L-mQ-wUg">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="131"/>
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="158.66666666666666"/>
                     <color key="backgroundColor" name="BlueColor"/>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokedex" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8X0-Nm-YIN">
+                    <rect key="frame" x="20" y="67" width="353" height="27.666666666666671"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                    <color key="textColor" name="GrayColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d9M-8O-AJ1">
-                    <rect key="frame" x="20" y="75" width="353" height="40"/>
+                    <rect key="frame" x="20" y="102.66666666666667" width="353" height="40.000000000000014"/>
                     <color key="backgroundColor" name="GrayColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="mL6-0k-Vjw"/>
@@ -36,7 +42,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qWT-SP-FIj">
-                    <rect key="frame" x="0.0" y="131" width="393" height="687"/>
+                    <rect key="frame" x="0.0" y="158.66666666666669" width="393" height="659.33333333333326"/>
                     <color key="backgroundColor" name="GrayColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2fW-AS-G2U">
                         <size key="itemSize" width="128" height="128"/>
@@ -50,9 +56,12 @@
             <color key="backgroundColor" name="GrayColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qWT-SP-FIj" secondAttribute="trailing" id="24n-Cg-3fL"/>
+                <constraint firstItem="8X0-Nm-YIN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="AKV-aY-kHy"/>
                 <constraint firstItem="qWT-SP-FIj" firstAttribute="top" secondItem="m9L-mQ-wUg" secondAttribute="bottom" id="DGw-Iy-wRl"/>
                 <constraint firstItem="m9L-mQ-wUg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fzp-bf-L75"/>
-                <constraint firstItem="d9M-8O-AJ1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="IOG-L5-3RY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8X0-Nm-YIN" secondAttribute="trailing" constant="20" id="Gib-TF-6Il"/>
+                <constraint firstItem="8X0-Nm-YIN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="HmR-Lq-oas"/>
+                <constraint firstItem="d9M-8O-AJ1" firstAttribute="top" secondItem="8X0-Nm-YIN" secondAttribute="bottom" constant="8" id="IOG-L5-3RY"/>
                 <constraint firstItem="d9M-8O-AJ1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="LZs-zP-ciz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="qWT-SP-FIj" secondAttribute="bottom" id="NJj-dB-h8N"/>
                 <constraint firstItem="m9L-mQ-wUg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZR7-da-Vd0"/>
