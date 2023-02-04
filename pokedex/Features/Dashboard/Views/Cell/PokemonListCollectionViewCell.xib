@@ -21,6 +21,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPi-du-mVH">
                         <rect key="frame" x="0.0" y="0.0" width="301" height="156"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_pokeball" translatesAutoresizingMaskIntoConstraints="NO" id="XgZ-JX-3Qh">
+                                <rect key="frame" x="216" y="71" width="85" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="0qy-L6-cmZ"/>
+                                    <constraint firstAttribute="width" constant="85" id="0re-Oa-5L5"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7su-Aa-fQW">
                                 <rect key="frame" x="10" y="10" width="229.66666666666666" height="56"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -91,11 +98,13 @@
                             <constraint firstItem="dcB-xb-l5x" firstAttribute="leading" secondItem="7su-Aa-fQW" secondAttribute="trailing" constant="10" id="KE4-ZJ-HcO"/>
                             <constraint firstItem="agO-WY-wFQ" firstAttribute="centerY" secondItem="jfT-tG-DSx" secondAttribute="centerY" id="Ld1-NQ-9Bk"/>
                             <constraint firstItem="dcB-xb-l5x" firstAttribute="bottom" secondItem="7su-Aa-fQW" secondAttribute="bottom" id="P7d-oT-RF8"/>
+                            <constraint firstAttribute="bottom" secondItem="XgZ-JX-3Qh" secondAttribute="bottom" id="Sgd-hU-4j6"/>
                             <constraint firstAttribute="trailing" secondItem="dcB-xb-l5x" secondAttribute="trailing" constant="10" id="Uu3-Wp-cnm"/>
                             <constraint firstItem="jfT-tG-DSx" firstAttribute="leading" secondItem="WPi-du-mVH" secondAttribute="leading" constant="10" id="cKs-90-LYV"/>
                             <constraint firstItem="7su-Aa-fQW" firstAttribute="leading" secondItem="WPi-du-mVH" secondAttribute="leading" constant="10" id="g7v-zb-yWh"/>
                             <constraint firstItem="dcB-xb-l5x" firstAttribute="top" secondItem="WPi-du-mVH" secondAttribute="top" constant="10" id="iSQ-iL-bFV"/>
                             <constraint firstItem="7su-Aa-fQW" firstAttribute="top" secondItem="WPi-du-mVH" secondAttribute="top" constant="10" id="j3c-kb-616"/>
+                            <constraint firstAttribute="trailing" secondItem="XgZ-JX-3Qh" secondAttribute="trailing" id="qGD-MN-Rqi"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -122,6 +131,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="ic_pokeball" width="128" height="128"/>
         <namedColor name="BlueColor">
             <color red="0.21568627450980393" green="0.6470588235294118" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
