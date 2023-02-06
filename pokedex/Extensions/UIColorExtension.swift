@@ -8,12 +8,8 @@
 import Foundation
 import UIKit
 
+// MARK: - convert rgb to hex
 extension UIColor {
-    /// #37A5C6
-    static var primaryColor: UIColor = UIColor(rgb: 0x37A5C6)
-    /// #F0F2F6
-    static var secondaryColor: UIColor = UIColor(rgb: 0xF0F2F6)
-    
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
         assert(green >= 0 && green <= 255, "Invalid green component")
@@ -28,4 +24,12 @@ extension UIColor {
             blue: rgb & 0xFF
         )
     }
+}
+
+// MARK: - color assets
+extension UIColor {
+    /// #37A5C6
+    static var primaryColor: UIColor = UIColor(rgb: 0x37A5C6)
+    /// #F0F2F6
+    static var secondaryColor: UIColor = UIColor(rgb: 0xF0F2F6)
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC088CF82990E22F00F3961D /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088CF72990E22F00F3961D /* Toast.swift */; };
+		BC088CFA2990E26C00F3961D /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088CF92990E26C00F3961D /* UIViewControllerExtension.swift */; };
 		BC28402B2990DBC800BC63B4 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC28402A2990DBC800BC63B4 /* UIColorExtension.swift */; };
 		BC9A6842298934300027A87F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9A6841298934300027A87F /* AppDelegate.swift */; };
 		BC9A6844298934300027A87F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9A6843298934300027A87F /* SceneDelegate.swift */; };
@@ -65,6 +67,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC088CF72990E22F00F3961D /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		BC088CF92990E26C00F3961D /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		BC28402A2990DBC800BC63B4 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		BC9A683E298934300027A87F /* pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9A6841298934300027A87F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -292,6 +296,7 @@
 		E1D15BE0298D589D00AF0012 /* LibraryThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				BC088CF72990E22F00F3961D /* Toast.swift */,
 				E1D15BE1298D58B900AF0012 /* CustomSegmentedControl.swift */,
 			);
 			path = LibraryThirdParty;
@@ -302,6 +307,7 @@
 			children = (
 				E1D15BE6298D59B100AF0012 /* CollectionExtension.swift */,
 				BC28402A2990DBC800BC63B4 /* UIColorExtension.swift */,
+				BC088CF92990E26C00F3961D /* UIViewControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -519,6 +525,7 @@
 				E1BF746C298AE1F800A2FE45 /* PokemonListCollectionViewCell.swift in Sources */,
 				E1D15BF5298D61E000AF0012 /* MovesViewController.swift in Sources */,
 				E1D15BE7298D59B100AF0012 /* CollectionExtension.swift in Sources */,
+				BC088CFA2990E26C00F3961D /* UIViewControllerExtension.swift in Sources */,
 				BC9A6842298934300027A87F /* AppDelegate.swift in Sources */,
 				BC28402B2990DBC800BC63B4 /* UIColorExtension.swift in Sources */,
 				BC9A6872298938900027A87F /* TabBarViewController.swift in Sources */,
@@ -531,6 +538,7 @@
 				BC9A6875298939BB0027A87F /* DashboardViewController.swift in Sources */,
 				E1D15C04298D871C00AF0012 /* MovesTableViewCell.swift in Sources */,
 				E1D15BEB298D61B900AF0012 /* AboutViewController.swift in Sources */,
+				BC088CF82990E22F00F3961D /* Toast.swift in Sources */,
 				BCD8D38E298D1B0800C3FA12 /* DetailPokemonViewController.swift in Sources */,
 				E1D15BFA298D7B5700AF0012 /* BaseStatsTableViewCell.swift in Sources */,
 			);

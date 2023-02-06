@@ -42,6 +42,10 @@ class DashboardViewController: UIViewController {
     }
     
     private func initObservers() {
+        viewModel.isLoading.observe(on: self) { isLoading in
+            self.manageLoadingActivity(isLoading: isLoading)
+        }
+        
         viewModel.pokemons.observe(on: self) { _ in
             self.pokemonListCollectionView.reloadData()
         }

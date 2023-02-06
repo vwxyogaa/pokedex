@@ -15,11 +15,14 @@ class DashboardViewModel {
     
     var pokemonList: [PokemonResults]? = []
     var pokemonDetail: [Pokemon] = []
+    let isLoading: Observable<Bool> = Observable(false)
     let pokemons: Observable<[Pokemon]?> = Observable(nil)
     
     func getPokemonList() {
+        isLoading.value = true
         group.enter()
         repository.getPokemonList(size: 10) { result in
+            self.isLoading.value = false
             self.pokemonList = result?.results
             guard let pokemon = result?.results else { return }
             DispatchQueue.global().async {
@@ -35,7 +38,9 @@ class DashboardViewModel {
     
     func getPokemonDetail(name: String) {
         group.enter()
+        isLoading.value = true
         self.repository.getPokemonDetail(name: name) { result in
+            self.isLoading.value = false
             if let result {
                 self.pokemonDetail.append(result)
                 self.pokemons.value = self.pokemonDetail
