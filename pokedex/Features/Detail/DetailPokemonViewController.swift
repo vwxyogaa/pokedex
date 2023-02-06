@@ -84,7 +84,7 @@ class DetailPokemonViewController: UIViewController {
         self.namePokemonLabel.text = pokemonDetail?.name?.localizedCapitalized
         let image = pokemonDetail?.sprites?.other?.officialArtwork?.frontDefault ?? ""
         if let url = URL(string: image) {
-            self.imagePokemon.kf.setImage(with: url)
+            self.imagePokemon.kf.setImage(with: url, placeholder: UIImage(named: "pokeball"))
         }
     }
     

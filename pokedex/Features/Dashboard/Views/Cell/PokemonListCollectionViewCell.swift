@@ -35,7 +35,7 @@ class PokemonListCollectionViewCell: UICollectionViewCell {
         self.typeOnePokemonLabel.text = typeOne
         self.typeTwoPokemonLabel.text = typeTwo
         if let url = URL(string: imageUrl) {
-            self.pokemonImageView.kf.setImage(with: url)
+            self.pokemonImageView.kf.setImage(with: url, placeholder: UIImage(named: "pokeball"))
         }
     }
 }
