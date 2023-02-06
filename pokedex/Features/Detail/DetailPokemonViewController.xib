@@ -47,22 +47,22 @@
                     </buttonConfiguration>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3de-jn-r32">
-                    <rect key="frame" x="20" y="101" width="353" height="0.0"/>
+                    <rect key="frame" x="20" y="101" width="353" height="23"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                     <color key="textColor" name="GrayColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gF-qA-CJK">
-                    <rect key="frame" x="20" y="101" width="353" height="0.0"/>
+                    <rect key="frame" x="20" y="124" width="353" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                     <color key="textColor" name="GrayColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WHO-Yz-EMs">
-                    <rect key="frame" x="0.0" y="359" width="393" height="493"/>
+                    <rect key="frame" x="0.0" y="382" width="393" height="470"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="s5m-6S-Hqo">
-                            <rect key="frame" x="0.0" y="35" width="393" height="388"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="s5m-6S-Hqo">
+                            <rect key="frame" x="0.0" y="35" width="393" height="363"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iaR-jh-48M" customClass="CustomSegmentedControl" customModule="pokedex" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
@@ -72,15 +72,15 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fk2-hW-wny">
-                                    <rect key="frame" x="0.0" y="50" width="393" height="338"/>
+                                    <rect key="frame" x="0.0" y="55" width="393" height="308"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
                             </subviews>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9K-GO-DYv">
-                            <rect key="frame" x="20" y="433" width="353" height="40"/>
+                            <rect key="frame" x="20" y="408" width="353" height="42"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="pQs-Xz-h6w"/>
+                                <constraint firstAttribute="height" constant="42" id="pQs-Xz-h6w"/>
                             </constraints>
                             <color key="tintColor" name="GrayColor"/>
                             <state key="normal" title="Button"/>
@@ -101,7 +101,7 @@
                     </constraints>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="05g-TA-qmk">
-                    <rect key="frame" x="46.666666666666657" y="109" width="300" height="300"/>
+                    <rect key="frame" x="46.666666666666657" y="132" width="300" height="300"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="URF-qS-Drm"/>
                         <constraint firstAttribute="height" constant="300" id="kG3-Aj-X8j"/>
