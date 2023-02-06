@@ -9,7 +9,6 @@ import UIKit
 
 class DashboardViewController: UIViewController {
     @IBOutlet weak var backgroundContainerView: UIView!
-    @IBOutlet weak var searchPokemonTextField: UITextField!
     @IBOutlet weak var pokemonListCollectionView: UICollectionView!
     
     var viewModel: DashboardViewModel!
@@ -33,7 +32,6 @@ class DashboardViewController: UIViewController {
     
     private func configureViews() {
         configureBackgroundContainerView()
-        configureSearchPokemonTextField()
         configureCollectionView()
     }
     
@@ -46,8 +44,10 @@ class DashboardViewController: UIViewController {
             self.manageLoadingActivity(isLoading: isLoading)
         }
         
-        viewModel.pokemons.observe(on: self) { _ in
-            self.pokemonListCollectionView.reloadData()
+        viewModel.completeRequest.observe(on: self) { requestComplete in
+            if requestComplete {
+                self.pokemonListCollectionView.reloadData()
+            }
         }
     }
     
@@ -55,17 +55,6 @@ class DashboardViewController: UIViewController {
         backgroundContainerView.clipsToBounds = true
         backgroundContainerView.layer.cornerRadius = 10
         backgroundContainerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-    }
-    
-    private func configureSearchPokemonTextField() {
-        self.searchPokemonTextField.delegate = self
-        self.searchPokemonTextField.layer.cornerRadius = 10
-        self.searchPokemonTextField.layer.masksToBounds = true
-        self.searchPokemonTextField.clearButtonMode = .whileEditing
-        searchPokemonTextField.attributedPlaceholder = NSAttributedString(
-            string: "Search",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
-        )
     }
     
     private func configureCollectionView() {
@@ -78,13 +67,14 @@ class DashboardViewController: UIViewController {
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.pokemons.value?.count ?? 0
+        return viewModel.pokemonList?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonListCollectionViewCell", for: indexPath) as? PokemonListCollectionViewCell else { return UICollectionViewCell() }
-        let pokemon = viewModel.pokemons.value?[indexPath.row]
-        cell.configureContent(name: pokemon?.name?.capitalized ?? "-", number: "#\(indexPath.row + 1)", typeOne: pokemon?.types?.first?.type?.name?.capitalized ?? "-", typeTwo: pokemon?.types?.last?.type?.name?.capitalized ?? "-", imageUrl: pokemon?.sprites?.other?.officialArtwork?.frontDefault ?? "")
+        let pokemon = viewModel.pokemonDetail[indexPath.row]
+        cell.configureContent(name: pokemon.name?.capitalized ?? "-", number: "#\(pokemon.id ?? 0)", typeOne: pokemon.types?.first?.type?.name?.capitalized ?? "-", typeTwo: pokemon.types?.last?.type?.name?.capitalized ?? "-", imageUrl: pokemon.sprites?.other?.officialArtwork?.frontDefault ?? "")
+        viewModel.loadNextPage(lastIndex: indexPath.row)
         return cell
     }
     
@@ -105,23 +95,5 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 20)
-    }
-}
-
-// MARK: - UITextFieldDelegate
-extension DashboardViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let text = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
-        if text.count > 3 {
-            viewModel.searchPokemon(query: text)
-        } else {
-            viewModel.searchPokemon(query: "")
-        }
-        return true
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        viewModel.searchPokemon(query: textField.text ?? "")
-        return true
     }
 }

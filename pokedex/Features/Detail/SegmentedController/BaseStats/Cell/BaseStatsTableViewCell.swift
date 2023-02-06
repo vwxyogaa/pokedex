@@ -20,13 +20,21 @@ class BaseStatsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configureViews(statistic: PokemonStats, baseStat: Int?) {
+    func configureViews(statistic: PokemonStats) {
         self.titleStatLabel.text = statistic.stat?.name?.capitalized
         self.scoreStatLabel.text = String(statistic.baseStat ?? 0)
         
-        let maxStat = (baseStat ?? 0) + 20
-        let resultStat = Float(statistic.baseStat ?? 0) / Float(maxStat)
+        let resultStat = Float(statistic.baseStat ?? 0) / Float(255)
         barStatProgressView.progress = resultStat
-        barStatProgressView.tintColor = resultStat > 0.6 ? .green : .red
+        switch statistic.baseStat ?? 0 {
+        case 0...50:
+            barStatProgressView.tintColor = .systemRed
+        case 51...100:
+            barStatProgressView.tintColor = .systemYellow
+        case 101...255:
+            barStatProgressView.tintColor = .systemGreen
+        default:
+            break
+        }
     }
 }

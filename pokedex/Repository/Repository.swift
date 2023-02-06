@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 protocol RepositoryProtocol {
-    func getPokemonList(size: Int, completion: @escaping (PokemonList?) -> Void)
+    func getPokemonList(page: Int, size: Int, completion: @escaping (PokemonList?) -> Void)
     func getPokemonDetail(name: String, completion: @escaping (Pokemon?) -> Void)
 }
 
@@ -18,8 +18,9 @@ class Repository: RepositoryProtocol {
     
     private let baseURL = "https://pokeapi.co/api/v2/pokemon"
     
-    func getPokemonList(size: Int, completion: @escaping(PokemonList?) -> Void) {
-        let fullUrl = "\(baseURL)?limit=\(size)"
+    func getPokemonList(page: Int, size: Int, completion: @escaping(PokemonList?) -> Void) {
+        let offset = (page - 1) * size
+        let fullUrl = "\(baseURL)?offset=\(offset)&limit=\(size)"
         AF.request(fullUrl).validate().responseDecodable(of: PokemonList.self) { response in
             switch response.result {
             case .success(let data):

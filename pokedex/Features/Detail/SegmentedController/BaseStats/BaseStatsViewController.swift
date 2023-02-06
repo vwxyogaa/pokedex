@@ -32,8 +32,7 @@ extension BaseStatsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BaseStatsTableViewCell", for: indexPath) as? BaseStatsTableViewCell else { return UITableViewCell() }
-        let baseStat = pokemonStats.map { $0.baseStat ?? 0 }.sorted().last ?? 0
-        cell.configureViews(statistic: pokemonStats[indexPath.row], baseStat: baseStat)
+        cell.configureViews(statistic: pokemonStats[indexPath.row])
         return cell
     }
 }

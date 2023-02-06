@@ -9,61 +9,85 @@ import Foundation
 
 class DashboardViewModel {
     private let repository = Repository.shared
+    
+    // MARK: - dispatch
     let group = DispatchGroup()
     let semaphore = DispatchSemaphore(value: 0)
     let queue = DispatchQueue(label: "com.gcd.Queue")
     
+    // MARK: - pagination
+    private var page = 1
+    private var totalPage = 1
+    private var canLoadNextPage = false
+    private let pageSize = 20
+    
     var pokemonList: [PokemonResults]? = []
     var pokemonDetail: [Pokemon] = []
     let isLoading: Observable<Bool> = Observable(false)
-    let pokemons: Observable<[Pokemon]?> = Observable(nil)
+    var completeRequest: Observable<Bool> = Observable(false)
+    
+    private func calculateTotalPage(totalData: Int) {
+        totalPage = (totalData % pageSize == 0) ? totalData/pageSize : (totalData/pageSize + 1)
+    }
     
     func getPokemonList() {
         isLoading.value = true
         group.enter()
-        repository.getPokemonList(size: 10) { result in
-            self.isLoading.value = false
-            self.pokemonList = result?.results
-            guard let pokemon = result?.results else { return }
-            DispatchQueue.global().async {
-                for poke in pokemon {
-                    self.getPokemonDetail(name: poke.name ?? "")
-                    self.semaphore.wait()
+        repository.getPokemonList(page: page, size: pageSize) { result in
+            if self.page == 1 {
+                self.calculateTotalPage(totalData: result?.count ?? 0)
+                self.pokemonList = result?.results
+                guard let pokemon = result?.results else { return }
+                DispatchQueue.global().async {
+                    for poke in pokemon {
+                        self.getPokemonDetail(name: poke.name ?? "")
+                        self.semaphore.wait()
+                    }
+                    self.group.leave()
                 }
-                self.group.leave()
+            } else {
+                let newInformations = result?.results
+                self.pokemonList?.append(contentsOf: newInformations ?? [])
+                guard let pokemon = newInformations else { return }
+                DispatchQueue.global().async {
+                    for poke in pokemon {
+                        self.getPokemonDetail(name: poke.name ?? "")
+                        self.semaphore.wait()
+                    }
+                    self.group.leave()
+                }
             }
+            self.canLoadNextPage = true
+            self.page += 1
         }
         notifyDispatchGroup()
     }
     
     func getPokemonDetail(name: String) {
         group.enter()
-        isLoading.value = true
         self.repository.getPokemonDetail(name: name) { result in
-            self.isLoading.value = false
             if let result {
                 self.pokemonDetail.append(result)
-                self.pokemons.value = self.pokemonDetail
             }
             self.semaphore.signal()
             self.group.leave()
         }
     }
     
-    func searchPokemon(query: String) {
-        if query.isEmpty {
-            self.pokemons.value = pokemonDetail
-        } else {
-            let filteredPokemon = self.pokemons.value?.filter({
-                $0.name?.lowercased().contains(query.lowercased()) == true
-            })
-            self.pokemons.value = filteredPokemon
+    func loadNextPage(lastIndex: Int) {
+        if page <= totalPage && canLoadNextPage {
+            let totalData = (pokemonList?.count ?? 2) - 2
+            if lastIndex == totalData {
+                getPokemonList()
+            }
         }
     }
     
     func notifyDispatchGroup() {
         group.notify(queue: .global()) {
-            print("all network request done")
+            self.isLoading.value = false
+            self.completeRequest.value = true
+            print("all network request done in page: \(self.page - 1)")
         }
     }
 }
