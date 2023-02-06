@@ -14,13 +14,7 @@ class DetailPokemonViewController: UIViewController {
     @IBOutlet weak var namePokemonLabel: UILabel!
     @IBOutlet weak var imagePokemon: UIImageView!
     @IBOutlet weak var statsBackgroundView: UIView!
-    @IBOutlet weak var statsSegmentedController: CustomSegmentedControl! {
-        didSet {
-            statsSegmentedController.setButtonTitles(buttonTitles: ["About", "Base Stats", "Moves"])
-            statsSegmentedController.selectorViewColor = UIColor(named: "BlueColor") ?? .blue
-            statsSegmentedController.selectorTextColor = UIColor(named: "BlueColor") ?? .blue
-        }
-    }
+    @IBOutlet weak var statsSegmentedController: CustomSegmentedControl!
     @IBOutlet weak var contentStatsView: UIView!
     @IBOutlet weak var catchButton: UIButton!
     
@@ -72,12 +66,15 @@ class DetailPokemonViewController: UIViewController {
     
     private func configureStatsSegmentedController() {
         statsSegmentedController.delegate = self
+        statsSegmentedController.setButtonTitles(buttonTitles: ["About", "Base Stats", "Moves"])
         statsSegmentedController.setIndex(index: 0)
-        statsSegmentedController.backgroundColor = UIColor(named: "GrayColor")
+        statsSegmentedController.backgroundColor = .secondaryColor
+        statsSegmentedController.selectorViewColor = .primaryColor
+        statsSegmentedController.selectorTextColor = .primaryColor
     }
     
     private func configureCatchButton() {
-        catchButton.backgroundColor = UIColor(named: "BlueColor")
+        catchButton.backgroundColor = .primaryColor
         catchButton.layer.cornerRadius = 10
     }
     
@@ -133,7 +130,7 @@ extension DetailPokemonViewController: CustomSegmentedControlDelegate {
         addChild(viewController)
         contentStatsView.addSubview(viewController.view)
         viewController.view.frame = contentStatsView.bounds
-        viewController.view.backgroundColor = UIColor(named: "GrayColor")
+        viewController.view.backgroundColor = .secondaryColor
         viewController.didMove(toParent: self)
     }
 }

@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .systemBackground
         
         let tabController = window?.rootViewController as? UITabBarController
-        tabController?.tabBar.backgroundColor = UIColor(named: "GrayColor")
-        tabController?.tabBar.tintColor = UIColor(named: "BlueColor")
+        tabController?.tabBar.backgroundColor = .secondaryColor
+        tabController?.tabBar.tintColor = .primaryColor
     }
 }
