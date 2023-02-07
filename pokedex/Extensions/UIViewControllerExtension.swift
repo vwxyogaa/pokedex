@@ -5,7 +5,6 @@
 //  Created by Panji Yoga on 06/02/23.
 //
 
-import Foundation
 import UIKit
 
 // MARK: - loading

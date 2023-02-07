@@ -41,15 +41,10 @@ class DetailPokemonViewController: UIViewController {
     }
     
     private func configureViews() {
-        configureNavigationBar()
         configureBackButton()
         configureStatsBackgroundView()
         configureStatsSegmentedController()
         configureCatchButton()
-    }
-    
-    private func configureNavigationBar() {
-        navigationItem.largeTitleDisplayMode = .never
     }
     
     private func configureBackButton() {
