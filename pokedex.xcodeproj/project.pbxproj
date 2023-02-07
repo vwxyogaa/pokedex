@@ -10,7 +10,6 @@
 		BC088CF82990E22F00F3961D /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088CF72990E22F00F3961D /* Toast.swift */; };
 		BC088CFA2990E26C00F3961D /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088CF92990E26C00F3961D /* UIViewControllerExtension.swift */; };
 		BC28402B2990DBC800BC63B4 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC28402A2990DBC800BC63B4 /* UIColorExtension.swift */; };
-		BC392BED2991290700C503CF /* SVGKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC392BEC2991290700C503CF /* SVGKitSwift */; };
 		BC9A6842298934300027A87F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9A6841298934300027A87F /* AppDelegate.swift */; };
 		BC9A6844298934300027A87F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9A6843298934300027A87F /* SceneDelegate.swift */; };
 		BC9A684B298934320027A87F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC9A684A298934320027A87F /* Assets.xcassets */; };
@@ -116,7 +115,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC392BED2991290700C503CF /* SVGKitSwift in Frameworks */,
 				BC9A6898298BBE810027A87F /* Kingfisher in Frameworks */,
 				BC9A6895298BBE5E0027A87F /* Alamofire in Frameworks */,
 				BC9A689B298BBEB90027A87F /* netfox in Frameworks */,
@@ -391,7 +389,6 @@
 				BC9A6894298BBE5E0027A87F /* Alamofire */,
 				BC9A6897298BBE810027A87F /* Kingfisher */,
 				BC9A689A298BBEB90027A87F /* netfox */,
-				BC392BEC2991290700C503CF /* SVGKitSwift */,
 			);
 			productName = pokedex;
 			productReference = BC9A683E298934300027A87F /* pokedex.app */;
@@ -469,7 +466,6 @@
 				BC9A6893298BBE5E0027A87F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BC9A6896298BBE810027A87F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				BC9A6899298BBEB90027A87F /* XCRemoteSwiftPackageReference "netfox" */,
-				BC392BEB2991290700C503CF /* XCRemoteSwiftPackageReference "SVGKit" */,
 			);
 			productRefGroup = BC9A683F298934300027A87F /* Products */;
 			projectDirPath = "";
@@ -880,14 +876,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BC392BEB2991290700C503CF /* XCRemoteSwiftPackageReference "SVGKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SVGKit/SVGKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 		BC9A6893298BBE5E0027A87F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -915,11 +903,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BC392BEC2991290700C503CF /* SVGKitSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BC392BEB2991290700C503CF /* XCRemoteSwiftPackageReference "SVGKit" */;
-			productName = SVGKitSwift;
-		};
 		BC9A6894298BBE5E0027A87F /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BC9A6893298BBE5E0027A87F /* XCRemoteSwiftPackageReference "Alamofire" */;
