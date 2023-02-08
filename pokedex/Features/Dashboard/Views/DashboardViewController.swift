@@ -81,6 +81,8 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = DetailPokemonViewController()
         detailViewController.pokemonDetail = viewModel.pokemonDetail[indexPath.row]
+        let detailPokemonViewModel = DetailPokemonViewModel(pokemon: viewModel.pokemonDetail[indexPath.row])
+        detailViewController.viewModel = detailPokemonViewModel
         detailViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }

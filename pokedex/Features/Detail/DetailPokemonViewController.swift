@@ -23,10 +23,12 @@ class DetailPokemonViewController: UIViewController {
     private lazy var movesViewController = MovesViewController()
     
     var pokemonDetail: Pokemon?
+    var viewModel: DetailPokemonViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
+        initObservers()
         configureData()
     }
     
@@ -71,6 +73,7 @@ class DetailPokemonViewController: UIViewController {
     private func configureCatchButton() {
         catchButton.backgroundColor = .primaryColor
         catchButton.layer.cornerRadius = 10
+        catchButton.addTarget(self, action: #selector(catchButtonClicked(_:)), for: .touchUpInside)
     }
     
     private func configureData() {
@@ -83,10 +86,77 @@ class DetailPokemonViewController: UIViewController {
         }
     }
     
+    private func initObservers() {
+        viewModel.isCatched.observe(on: self) { isCatched in
+            if isCatched {
+                self.updateCatchButton(isCatched: isCatched)
+            }
+        }
+    }
+    
+    private func dialogSuccessCatch() {
+        let dialogMessage = UIAlertController(title: "", message: "Success to catch it!.\nPlease give a nickname", preferredStyle: .alert)
+        dialogMessage.addTextField { textfield in
+            textfield.placeholder = "Type nickname"
+        }
+        let done = UIAlertAction(title: "Done", style: .default) { _ in
+            let nickname = dialogMessage.textFields?.first?.text ?? "-"
+            self.viewModel.catchPokemon(nickname: nickname)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        dialogMessage.addAction(done)
+        dialogMessage.addAction(cancel)
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    private func dialogFailedCatch() {
+        let dialogMessage = UIAlertController(title: "", message: "Failed to catch it.\nPlease try again!", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default)
+        dialogMessage.addAction(ok)
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    private func dialogRelease() {
+        let dialogMessage = UIAlertController(title: "", message: "Are you sure you want to release this pokemon?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Yes", style: .default) { _ in
+            // doing delete function from core data
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        dialogMessage.addAction(yes)
+        dialogMessage.addAction(cancel)
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    private func updateCatchButton(isCatched: Bool) {
+        if isCatched {
+            catchButton.tag = 1
+            catchButton.setTitle("Release", for: .normal)
+            catchButton.setTitleColor(.primaryColor, for: .normal)
+            catchButton.backgroundColor = .secondaryColor
+        } else {
+            catchButton.tag = 0
+            catchButton.setTitle("Catch", for: .normal)
+            catchButton.setTitleColor(.secondaryColor, for: .normal)
+            catchButton.backgroundColor = .primaryColor
+        }
+        catchButton.layer.borderWidth = 1.5
+        catchButton.layer.borderColor = UIColor.primaryColor.cgColor
+    }
+    
     // MARK: - Action
     @objc
     private func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    private func catchButtonClicked(_ sender: UIButton) {
+        if sender.tag == 0 {
+            let catchPokemon = Bool.random()
+            catchPokemon ? self.dialogSuccessCatch() : self.dialogFailedCatch()
+        } else {
+            self.dialogRelease()
+        }
     }
 }
 
