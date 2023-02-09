@@ -73,7 +73,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonListCollectionViewCell", for: indexPath) as? PokemonListCollectionViewCell else { return UICollectionViewCell() }
         let pokemon = viewModel.pokemonDetail[indexPath.row]
-        cell.configureContent(name: pokemon.name?.capitalized ?? "-", number: "#\(pokemon.id ?? 0)", typeOne: pokemon.types?.first?.type?.name?.capitalized ?? "-", typeTwo: pokemon.types?.last?.type?.name?.capitalized ?? "-", imageUrl: pokemon.sprites?.other?.officialArtwork?.frontDefault ?? "")
+        cell.configureContentDashboard(name: pokemon.name?.capitalized ?? "-", number: pokemon.tag, typeOne: pokemon.types?.first?.type?.name?.capitalized ?? "-", typeTwo: pokemon.types?.last?.type?.name?.capitalized ?? "-", imageUrl: pokemon.sprites?.other?.officialArtwork?.frontDefault ?? "")
         viewModel.loadNextPage(lastIndex: indexPath.row)
         return cell
     }

@@ -17,6 +17,17 @@ struct Pokemon: Codable {
     let abilities: [PokemonAbilities]?
     let stats: [PokemonStats]?
     let moves: [PokemonMoves]?
+    
+    var tag: String {
+        get {
+            guard let id = id else { return "###" }
+            switch String(id).count {
+            case 1: return "#00\(id)"
+            case 2: return "#0\(id)"
+            default: return "#\(id)"
+            }
+        }
+    }
 }
 
 struct PokemonSprites: Codable {

@@ -29,7 +29,6 @@ class DetailPokemonViewController: UIViewController {
         super.viewDidLoad()
         configureViews()
         initObservers()
-        configureData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,21 +75,26 @@ class DetailPokemonViewController: UIViewController {
         catchButton.addTarget(self, action: #selector(catchButtonClicked(_:)), for: .touchUpInside)
     }
     
-    private func configureData() {
-        guard let number = pokemonDetail?.id else { return }
+    private func configureData(pokemon: Pokemon?) {
+        guard let number = pokemon?.id else { return }
         self.numberPokemonLabel.text = "#\(number)"
-        self.namePokemonLabel.text = pokemonDetail?.name?.localizedCapitalized
-        let image = pokemonDetail?.sprites?.other?.officialArtwork?.frontDefault ?? ""
+        self.namePokemonLabel.text = (viewModel.nickname != nil) ? "\(pokemon?.name?.capitalized ?? "") (\(viewModel.nickname ?? ""))" : pokemon?.name?.capitalized
+        let image = pokemon?.sprites?.other?.officialArtwork?.frontDefault ?? ""
         if let url = URL(string: image) {
             self.imagePokemon.kf.setImage(with: url, placeholder: UIImage(named: "pokeball"))
         }
     }
     
     private func initObservers() {
+        viewModel.pokemon.observe(on: self) { pokemon in
+            self.configureData(pokemon: pokemon)
+            self.aboutViewController.pokemonDetail = pokemon
+            self.baseStatsViewController.pokemonStats = pokemon?.stats ?? []
+            self.movesViewController.pokemonMoves = pokemon?.moves ?? []
+        }
+        
         viewModel.isCatched.observe(on: self) { isCatched in
-            if isCatched {
-                self.updateCatchButton(isCatched: isCatched)
-            }
+            self.updateCatchButton(isCatched: isCatched)
         }
     }
     
@@ -119,7 +123,7 @@ class DetailPokemonViewController: UIViewController {
     private func dialogRelease() {
         let dialogMessage = UIAlertController(title: "", message: "Are you sure you want to release this pokemon?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default) { _ in
-            // doing delete function from core data
+            // function released pokemon
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         dialogMessage.addAction(yes)
@@ -166,17 +170,10 @@ extension DetailPokemonViewController: CustomSegmentedControlDelegate {
         removeChild()
         switch index {
         case 0:
-            self.aboutViewController.pokemonDetail = pokemonDetail
             addChildVC(aboutViewController)
         case 1:
-            if let pokemonStats = pokemonDetail?.stats {
-                self.baseStatsViewController.pokemonStats = pokemonStats
-            }
             addChildVC(baseStatsViewController)
         case 2:
-            if let pokemonMoves = pokemonDetail?.moves {
-                self.movesViewController.pokemonMoves = pokemonMoves
-            }
             addChildVC(movesViewController)
         default: break
         }

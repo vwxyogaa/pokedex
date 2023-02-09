@@ -15,8 +15,6 @@ class AboutViewController: UIViewController {
     @IBOutlet weak var abilitiesLabel: UILabel!
     
     var pokemonDetail: Pokemon?
-    var typesPokemon: [String] = []
-    var abilitiesPokemon: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +26,20 @@ class AboutViewController: UIViewController {
             nameLabel.text = pokemonDetail.name?.capitalized
             heightLabel.text = String(pokemonDetail.height ?? 0)
             weightLabel.text = String(pokemonDetail.weight ?? 0)
-            pokemonDetail.types?.forEach({ pokeType in
-                self.typesPokemon.append(pokeType.type?.name?.capitalized ?? "")
+            let typesPokemon: [String]? = pokemonDetail.types?.compactMap({ types in
+                if let name = types.type?.name {
+                    return name
+                }
+                return nil
             })
-            typesLabel.text = typesPokemon.joined(separator: ", ")
-            pokemonDetail.abilities?.forEach({ pokeAbilities in
-                self.abilitiesPokemon.append(pokeAbilities.ability?.name?.capitalized ?? "")
+            typesLabel.text = typesPokemon?.joined(separator: ", ").capitalized
+            let abilitiesPokemon: [String]? = pokemonDetail.abilities?.compactMap({ abilities in
+                if let name = abilities.ability?.name {
+                    return name
+                }
+                return nil
             })
-            abilitiesLabel.text = abilitiesPokemon.joined(separator: ", ")
+            abilitiesLabel.text = abilitiesPokemon?.joined(separator: ", ").capitalized
         }
     }
 }

@@ -15,6 +15,7 @@ protocol RepositoryProtocol {
     func getPokemonDetail(name: String, completion: @escaping (Pokemon?) -> Void)
     func catchPokemon(nickname: String, pokemon: Pokemon)
     func checkPokemonInCollection(pokemonId: Int?, completion: @escaping (_ isCatched: Bool) -> Void)
+    func getMyCollections(completion: @escaping ([PokemonCollection]) -> Void)
 }
 
 class Repository: RepositoryProtocol {
@@ -76,6 +77,24 @@ class Repository: RepositoryProtocol {
                 }
             }
             completion(false)
+        } catch {
+            print("Failed retrieve")
+        }
+    }
+    
+    func getMyCollections(completion: @escaping ([PokemonCollection]) -> Void) {
+        var collections: [PokemonCollection] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MyCollection")
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            for data in result as! [NSManagedObject] {
+                guard let nickname = data.value(forKey: "nickname") as? String, let pokemonData = data.value(forKey: "pokemon") as? Data, let pokemon = Utils.getPokemonFromData(data: pokemonData) else { continue }
+                let collection = PokemonCollection(nickname: nickname, pokemon: pokemon)
+                collections.append(collection)
+            }
+            completion(collections)
         } catch {
             print("Failed retrieve")
         }

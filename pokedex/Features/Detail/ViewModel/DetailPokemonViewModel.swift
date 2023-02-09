@@ -12,10 +12,17 @@ class DetailPokemonViewModel {
     
     let pokemon: Observable<Pokemon?> = Observable(nil)
     let isCatched: Observable<Bool> = Observable(false)
+    var nickname: String?
     
     init(pokemon: Pokemon) {
         self.pokemon.value = pokemon
         self.getStatusPokemonInCollection(pokemonId: pokemon.id)
+    }
+    
+    init(myCollection: PokemonCollection) {
+        self.isCatched.value = true
+        self.nickname = myCollection.nickname
+        self.pokemon.value = myCollection.pokemon
     }
     
     func catchPokemon(nickname: String) {
