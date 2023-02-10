@@ -21,7 +21,7 @@ class DashboardViewModel {
     private var canLoadNextPage = false
     private let pageSize = 20
     
-    var pokemonList: [PokemonResults]? = []
+    var pokemonList: [PokemonResults] = []
     var pokemonDetail: [Pokemon] = []
     let isLoading: Observable<Bool> = Observable(false)
     let completeRequest: Observable<Bool> = Observable(false)
@@ -47,7 +47,7 @@ class DashboardViewModel {
             }
             if self.page == 1 {
                 self.calculateTotalPage(totalData: result?.count ?? 0)
-                self.pokemonList = result?.results
+                self.pokemonList = result?.results ?? []
                 guard let pokemon = result?.results else { return }
                 DispatchQueue.global().async {
                     for poke in pokemon {
@@ -58,7 +58,7 @@ class DashboardViewModel {
                 }
             } else {
                 let newInformations = result?.results
-                self.pokemonList?.append(contentsOf: newInformations ?? [])
+                self.pokemonList.append(contentsOf: newInformations ?? [])
                 guard let pokemon = newInformations else { return }
                 DispatchQueue.global().async {
                     for poke in pokemon {
@@ -87,7 +87,7 @@ class DashboardViewModel {
     
     func loadNextPage(lastIndex: Int) {
         if page <= totalPage && canLoadNextPage {
-            let totalData = (pokemonList?.count ?? 2) - 2
+            let totalData = pokemonList.count - 2
             if lastIndex == totalData {
                 getPokemonList()
             }
