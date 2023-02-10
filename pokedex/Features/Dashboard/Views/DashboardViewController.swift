@@ -11,6 +11,11 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var backgroundContainerView: UIView!
     @IBOutlet weak var pokemonListCollectionView: UICollectionView!
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        return refreshControl
+    }()
+    
     var viewModel: DashboardViewModel!
     
     override func viewDidLoad() {
@@ -47,6 +52,7 @@ class DashboardViewController: UIViewController {
         viewModel.completeRequest.observe(on: self) { requestComplete in
             if requestComplete {
                 self.pokemonListCollectionView.reloadData()
+                self.refreshControl.endRefreshing()
             }
         }
     }
@@ -59,8 +65,18 @@ class DashboardViewController: UIViewController {
     
     private func configureCollectionView() {
         self.pokemonListCollectionView.register(UINib(nibName: "PokemonListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PokemonListCollectionViewCell")
+        self.refreshControl.addTarget(self, action: #selector(self.refreshData), for: .valueChanged)
+        self.pokemonListCollectionView.addSubview(refreshControl)
         self.pokemonListCollectionView.dataSource = self
         self.pokemonListCollectionView.delegate = self
+    }
+    
+    // MARK: - action
+    @objc
+    private func refreshData() {
+        self.refreshControl.beginRefreshing()
+        self.viewModel.page = 1
+        self.viewModel.getPokemonList()
     }
 }
 

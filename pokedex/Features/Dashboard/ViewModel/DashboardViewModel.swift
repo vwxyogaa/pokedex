@@ -16,7 +16,7 @@ class DashboardViewModel {
     let queue = DispatchQueue(label: "com.gcd.Queue")
     
     // MARK: - pagination
-    private var page = 1
+    var page = 1
     private var totalPage = 1
     private var canLoadNextPage = false
     private let pageSize = 20
