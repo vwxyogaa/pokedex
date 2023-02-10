@@ -55,6 +55,14 @@ class DashboardViewController: UIViewController {
                 self.refreshControl.endRefreshing()
             }
         }
+        
+        viewModel.errorMessage.observe(on: self) { errorMessage in
+            if let errorMessage {
+                self.connectionLostMessage(title: "", message: errorMessage) { _ in
+                    self.viewModel.getPokemonList()
+                }
+            }
+        }
     }
     
     private func configureBackgroundContainerView() {

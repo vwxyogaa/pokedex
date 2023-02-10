@@ -12,7 +12,7 @@ import UIKit
 
 protocol RepositoryProtocol {
     // MARK: - api
-    func getPokemonList(page: Int, size: Int, completion: @escaping (PokemonList?) -> Void)
+    func getPokemonList(page: Int, size: Int, completion: @escaping (PokemonList?, _ errorMessage: String?) -> Void)
     func getPokemonDetail(name: String, completion: @escaping (Pokemon?) -> Void)
     // MARK: - core data
     func catchPokemon(nickname: String, pokemon: Pokemon)
@@ -27,15 +27,15 @@ class Repository: RepositoryProtocol {
     private let baseURL = "https://pokeapi.co/api/v2/pokemon"
     
     // MARK: - api
-    func getPokemonList(page: Int, size: Int, completion: @escaping(PokemonList?) -> Void) {
+    func getPokemonList(page: Int, size: Int, completion: @escaping(PokemonList?, _ errorMessage: String?) -> Void) {
         let offset = (page - 1) * size
         let fullUrl = "\(baseURL)?offset=\(offset)&limit=\(size)"
         AF.request(fullUrl).validate().responseDecodable(of: PokemonList.self) { response in
             switch response.result {
             case .success(let data):
-                completion(data)
+                completion(data, nil)
             case .failure(let error):
-                print(error.localizedDescription)
+                completion(nil, error.localizedDescription)
             }
         }
     }

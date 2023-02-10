@@ -24,7 +24,8 @@ class DashboardViewModel {
     var pokemonList: [PokemonResults]? = []
     var pokemonDetail: [Pokemon] = []
     let isLoading: Observable<Bool> = Observable(false)
-    var completeRequest: Observable<Bool> = Observable(false)
+    let completeRequest: Observable<Bool> = Observable(false)
+    let errorMessage: Observable<String?> = Observable(nil)
     
     private func calculateTotalPage(totalData: Int) {
         totalPage = (totalData % pageSize == 0) ? totalData/pageSize : (totalData/pageSize + 1)
@@ -33,7 +34,17 @@ class DashboardViewModel {
     func getPokemonList() {
         isLoading.value = true
         group.enter()
-        repository.getPokemonList(page: page, size: pageSize) { result in
+        repository.getPokemonList(page: page, size: pageSize) { result, errorMessage in
+            if let errorMessage {
+                self.errorMessage.value = errorMessage
+                // if wanna clear data
+                /*
+                self.pokemonList.removeAll()
+                self.pokemonDetail.removeAll()
+                 */
+                self.group.leave()
+                return
+            }
             if self.page == 1 {
                 self.calculateTotalPage(totalData: result?.count ?? 0)
                 self.pokemonList = result?.results
