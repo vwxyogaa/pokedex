@@ -79,9 +79,10 @@ class DetailPokemonViewController: UIViewController {
         guard let number = pokemon?.id else { return }
         self.numberPokemonLabel.text = "#\(number)"
         self.namePokemonLabel.text = (viewModel.nickname != nil) ? "\(pokemon?.name?.capitalized ?? "") (\(viewModel.nickname ?? ""))" : pokemon?.name?.capitalized
-        let image = pokemon?.sprites?.other?.officialArtwork?.frontDefault ?? ""
-        if let url = URL(string: image) {
+        if let imageUrl = pokemon?.sprites?.other?.officialArtwork?.frontDefault, let url = URL(string: imageUrl) {
             self.imagePokemon.kf.setImage(with: url, placeholder: UIImage(named: "pokeball"))
+        } else {
+            self.imagePokemon.image = UIImage(named: "pokeball")
         }
     }
     
@@ -95,6 +96,7 @@ class DetailPokemonViewController: UIViewController {
         
         viewModel.isCatched.observe(on: self) { isCatched in
             self.updateCatchButton(isCatched: isCatched)
+            self.namePokemonLabel.text = (self.viewModel.nickname != nil) ? "\(self.viewModel.pokemon.value?.name?.capitalized ?? "") (\(self.viewModel.nickname ?? ""))" : self.viewModel.pokemon.value?.name?.capitalized
         }
     }
     
@@ -123,7 +125,7 @@ class DetailPokemonViewController: UIViewController {
     private func dialogRelease() {
         let dialogMessage = UIAlertController(title: "", message: "Are you sure you want to release this pokemon?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default) { _ in
-            // function released pokemon
+            self.viewModel.releasedPokemon()
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         dialogMessage.addAction(yes)

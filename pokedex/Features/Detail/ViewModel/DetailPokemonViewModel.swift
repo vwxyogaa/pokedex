@@ -29,16 +29,26 @@ class DetailPokemonViewModel {
         guard let pokemon = pokemon.value else { return }
         repository.catchPokemon(nickname: nickname, pokemon: pokemon)
         self.isCatched.value = true
+        self.nickname = nickname
     }
     
     private func getStatusPokemonInCollection(pokemonId: Int?) {
         guard let pokemonId else { return }
-        repository.checkPokemonInCollection(pokemonId: pokemonId) { isCatched in
+        repository.checkPokemonInCollection(pokemonId: pokemonId) { isCatched, nickname in
             if isCatched {
                 self.isCatched.value = true
+                self.nickname = nickname
             } else {
                 self.isCatched.value = false
             }
+        }
+    }
+    
+    func releasedPokemon() {
+        guard let nickname = nickname else { return }
+        repository.releasedPokemon(nickname: nickname) {
+            self.isCatched.value = false
+            self.nickname = nil
         }
     }
 }

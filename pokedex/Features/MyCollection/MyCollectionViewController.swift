@@ -73,7 +73,7 @@ class MyCollectionViewController: UIViewController {
 extension MyCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (viewModel.myCollections.value.count == 0) {
-            self.pokemonListCollectionView.setEmptyMessage("You don't have any pokemon")
+            self.pokemonListCollectionView.setEmptyMessage("You don't have any pokemon in bag")
         } else {
             self.pokemonListCollectionView.restore()
         }
@@ -96,11 +96,13 @@ extension MyCollectionViewController: UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 168, height: 125)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        8
+        let paddingSpaceHorizontal: CGFloat = 20 * (2 + 1)
+        let paddingSpaceVertical: CGFloat = 8 * (7 + 1)
+        let availableWidth = self.view.frame.width - paddingSpaceHorizontal
+        let availableHeight = self.view.frame.height - paddingSpaceVertical
+        let widthPerItem = (availableWidth / 2)
+        let heightPerItem = (availableHeight / 6)
+        return CGSize(width: widthPerItem, height: heightPerItem)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

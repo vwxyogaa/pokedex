@@ -73,7 +73,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonListCollectionViewCell", for: indexPath) as? PokemonListCollectionViewCell else { return UICollectionViewCell() }
         let pokemon = viewModel.pokemonDetail[indexPath.row]
-        cell.configureContentDashboard(name: pokemon.name?.capitalized ?? "-", number: pokemon.tag, typeOne: pokemon.types?.first?.type?.name?.capitalized ?? "-", typeTwo: pokemon.types?.last?.type?.name?.capitalized ?? "-", imageUrl: pokemon.sprites?.other?.officialArtwork?.frontDefault ?? "")
+        cell.configureContentDashboard(pokemon: pokemon)
         viewModel.loadNextPage(lastIndex: indexPath.row)
         return cell
     }
@@ -88,11 +88,13 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 168, height: 125)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        let paddingSpaceHorizontal: CGFloat = 20 * (2 + 1)
+        let paddingSpaceVertical: CGFloat = 8 * (7 + 1)
+        let availableWidth = self.view.frame.width - paddingSpaceHorizontal
+        let availableHeight = self.view.frame.height - paddingSpaceVertical
+        let widthPerItem = (availableWidth / 2)
+        let heightPerItem = (availableHeight / 6)
+        return CGSize(width: widthPerItem, height: heightPerItem)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

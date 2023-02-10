@@ -32,6 +32,7 @@ struct Pokemon: Codable {
 
 struct PokemonSprites: Codable {
     let other: OtherSprites?
+    let versions: VersionsSprites?
     
     struct OtherSprites: Codable {
         let officialArtwork: OfficialArtwork?
@@ -45,6 +46,26 @@ struct PokemonSprites: Codable {
             
             enum CodingKeys: String, CodingKey {
                 case frontDefault = "front_default"
+            }
+        }
+    }
+    
+    struct VersionsSprites: Codable {
+        let generationV: GenerationV?
+        
+        enum CodingKeys: String, CodingKey {
+            case generationV = "generation-v"
+        }
+        
+        struct GenerationV: Codable {
+            let blackWhite: BlackWhite?
+            
+            enum CodingKeys: String, CodingKey {
+                case blackWhite = "black-white"
+            }
+            
+            struct BlackWhite: Codable {
+                let animated: OtherSprites.OfficialArtwork?
             }
         }
     }
