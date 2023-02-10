@@ -11,8 +11,10 @@ import CoreData
 import UIKit
 
 protocol RepositoryProtocol {
+    // MARK: - api
     func getPokemonList(page: Int, size: Int, completion: @escaping (PokemonList?) -> Void)
     func getPokemonDetail(name: String, completion: @escaping (Pokemon?) -> Void)
+    // MARK: - core data
     func catchPokemon(nickname: String, pokemon: Pokemon)
     func checkPokemonInCollection(pokemonId: Int?, completion: @escaping (_ isCatched: Bool, _ nickname: String?) -> Void)
     func getMyCollections(completion: @escaping ([PokemonCollection]) -> Void)
@@ -24,6 +26,7 @@ class Repository: RepositoryProtocol {
     
     private let baseURL = "https://pokeapi.co/api/v2/pokemon"
     
+    // MARK: - api
     func getPokemonList(page: Int, size: Int, completion: @escaping(PokemonList?) -> Void) {
         let offset = (page - 1) * size
         let fullUrl = "\(baseURL)?offset=\(offset)&limit=\(size)"
@@ -49,6 +52,7 @@ class Repository: RepositoryProtocol {
         }
     }
     
+    // MARK: - core data
     func catchPokemon(nickname: String, pokemon: Pokemon) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
