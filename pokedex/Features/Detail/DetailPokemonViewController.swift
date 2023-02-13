@@ -44,6 +44,10 @@ class DetailPokemonViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        traitCollection.userInterfaceStyle == .dark ? .darkContent : .lightContent
+    }
+    
     private func configureViews() {
         configureBackButton()
         configureStatsBackgroundView()
@@ -67,13 +71,14 @@ class DetailPokemonViewController: UIViewController {
         statsSegmentedController.delegate = self
         statsSegmentedController.setButtonTitles(buttonTitles: ["About", "Base Stats", "Moves"])
         statsSegmentedController.setIndex(index: 0)
-        statsSegmentedController.backgroundColor = .secondaryColor
-        statsSegmentedController.selectorViewColor = .primaryColor
-        statsSegmentedController.selectorTextColor = .primaryColor
+        statsSegmentedController.backgroundColor = UIColor(named: "GrayColor")
+        statsSegmentedController.selectorViewColor = UIColor(named: "BlueColor") ?? .lightBlueColor
+        statsSegmentedController.selectorTextColor = UIColor(named: "BlueColor") ?? .lightBlueColor
+        statsSegmentedController.textColor = UIColor(named: "TypePokemonColor") ?? .white
     }
     
     private func configureCatchButton() {
-        catchButton.backgroundColor = .primaryColor
+        catchButton.backgroundColor = UIColor(named: "BlueColor")
         catchButton.layer.cornerRadius = 10
         catchButton.addTarget(self, action: #selector(catchButtonClicked(_:)), for: .touchUpInside)
     }
@@ -140,16 +145,16 @@ class DetailPokemonViewController: UIViewController {
         if isCatched {
             catchButton.tag = 1
             catchButton.setTitle("Release", for: .normal)
-            catchButton.setTitleColor(.primaryColor, for: .normal)
-            catchButton.backgroundColor = .secondaryColor
+            catchButton.setTitleColor(UIColor(named: "BlueColor"), for: .normal)
+            catchButton.backgroundColor = UIColor(named: "GrayColor")
         } else {
             catchButton.tag = 0
             catchButton.setTitle("Catch", for: .normal)
-            catchButton.setTitleColor(.secondaryColor, for: .normal)
-            catchButton.backgroundColor = .primaryColor
+            catchButton.setTitleColor(UIColor(named: "GrayColor"), for: .normal)
+            catchButton.backgroundColor = UIColor(named: "BlueColor")
         }
         catchButton.layer.borderWidth = 1.5
-        catchButton.layer.borderColor = UIColor.primaryColor.cgColor
+        catchButton.layer.borderColor = UIColor(named: "BlueColor")?.cgColor
     }
     
     // MARK: - Action
@@ -203,7 +208,7 @@ extension DetailPokemonViewController: CustomSegmentedControlDelegate {
         addChild(viewController)
         contentStatsView.addSubview(viewController.view)
         viewController.view.frame = contentStatsView.bounds
-        viewController.view.backgroundColor = .secondaryColor
+        viewController.view.backgroundColor = UIColor(named: "GrayColor")
         viewController.didMove(toParent: self)
     }
 }

@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,6 +22,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_pokeball" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-VD-5F5">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        <color key="tintColor" name="BlueColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="DL2-7w-qgp"/>
                                             <constraint firstAttribute="height" constant="200" id="Q3n-6x-rEF"/>
@@ -29,14 +31,14 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokedex" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHn-Xg-juy">
                                         <rect key="frame" x="0.0" y="216.00000000000006" width="200" height="33.666666666666657"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                        <color key="textColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" name="GrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.21568627450980393" green="0.6470588235294118" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="BlueColor"/>
                         <constraints>
                             <constraint firstItem="285-rx-shn" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="T4M-v7-4Hg"/>
                             <constraint firstItem="285-rx-shn" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="YXh-Lt-m2Q"/>
@@ -50,5 +52,11 @@
     </scenes>
     <resources>
         <image name="ic_pokeball" width="128" height="128"/>
+        <namedColor name="BlueColor">
+            <color red="0.25098039215686274" green="0.44313725490196076" blue="0.49411764705882355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="GrayColor">
+            <color red="0.94117647058823528" green="0.94901960784313721" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

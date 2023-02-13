@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,24 +24,29 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5cZ-BZ-c4r">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="110.66666666666667"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_pokeball" translatesAutoresizingMaskIntoConstraints="NO" id="ohN-78-BlH">
+                            <rect key="frame" x="313" y="59" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="oH1-uz-db7"/>
+                                <constraint firstAttribute="height" constant="80" id="zrv-Th-vC7"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
                     <color key="backgroundColor" name="BlueColor"/>
-                </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_pokeball" translatesAutoresizingMaskIntoConstraints="NO" id="ohN-78-BlH">
-                    <rect key="frame" x="313" y="59" width="80" height="80"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="80" id="oH1-uz-db7"/>
-                        <constraint firstAttribute="height" constant="80" id="zrv-Th-vC7"/>
+                        <constraint firstAttribute="trailing" secondItem="ohN-78-BlH" secondAttribute="trailing" id="lue-Zs-qPd"/>
                     </constraints>
-                </imageView>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tW-P9-HnL">
-                    <rect key="frame" x="20" y="67" width="353" height="27.666666666666671"/>
+                    <rect key="frame" x="15" y="67" width="363" height="27.666666666666671"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                     <color key="textColor" name="GrayColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="J3Z-mv-3pn">
                     <rect key="frame" x="0.0" y="110.66666666666669" width="393" height="707.33333333333326"/>
-                    <color key="backgroundColor" name="GrayColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pBS-qq-CML">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -50,20 +56,19 @@
                 </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" name="GrayColor"/>
+            <color key="backgroundColor" name="GrayBgColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4tW-P9-HnL" secondAttribute="trailing" constant="20" id="4Ec-aG-Xyi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4tW-P9-HnL" secondAttribute="trailing" constant="15" id="4Ec-aG-Xyi"/>
                 <constraint firstItem="J3Z-mv-3pn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6aK-XS-D14"/>
-                <constraint firstItem="ohN-78-BlH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="9Ea-cJ-AE4"/>
                 <constraint firstItem="4tW-P9-HnL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="Agr-OX-Bqc"/>
                 <constraint firstItem="J3Z-mv-3pn" firstAttribute="top" secondItem="5cZ-BZ-c4r" secondAttribute="bottom" id="OQi-91-VjD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="ohN-78-BlH" secondAttribute="top" id="SBz-EP-iN4"/>
                 <constraint firstItem="J3Z-mv-3pn" firstAttribute="top" secondItem="4tW-P9-HnL" secondAttribute="bottom" constant="16" id="T9k-Iu-yZI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="J3Z-mv-3pn" secondAttribute="trailing" id="YXt-Gi-bxo"/>
                 <constraint firstItem="5cZ-BZ-c4r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZxA-6Z-HWk"/>
                 <constraint firstItem="5cZ-BZ-c4r" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="b6L-wP-VJV"/>
-                <constraint firstItem="4tW-P9-HnL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="l6b-2B-wn1"/>
+                <constraint firstItem="4tW-P9-HnL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="l6b-2B-wn1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5cZ-BZ-c4r" secondAttribute="trailing" id="laO-So-xv4"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ohN-78-BlH" secondAttribute="trailing" id="lxb-FU-pl5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="J3Z-mv-3pn" secondAttribute="bottom" id="uL3-QG-Rdw"/>
             </constraints>
             <point key="canvasLocation" x="48" y="21"/>
@@ -72,10 +77,16 @@
     <resources>
         <image name="ic_pokeball" width="128" height="128"/>
         <namedColor name="BlueColor">
-            <color red="0.21568627450980393" green="0.6470588235294118" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.25098039215686274" green="0.44313725490196076" blue="0.49411764705882355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="GrayBgColor">
+            <color red="0.94117647058823528" green="0.94901960784313721" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="GrayColor">
             <color red="0.94117647058823528" green="0.94901960784313721" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

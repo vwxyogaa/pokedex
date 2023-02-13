@@ -35,6 +35,10 @@ class MyCollectionViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        traitCollection.userInterfaceStyle == .dark ? .darkContent : .lightContent
+    }
+    
     private func configureViews() {
         configureBackgroundContainerView()
         configureCollectionView()
@@ -96,7 +100,7 @@ extension MyCollectionViewController: UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpaceHorizontal: CGFloat = 20 * (2 + 1)
+        let paddingSpaceHorizontal: CGFloat = 15 * (2 + 1)
         let paddingSpaceVertical: CGFloat = 8 * (7 + 1)
         let availableWidth = self.view.frame.width - paddingSpaceHorizontal
         let availableHeight = self.view.frame.height - paddingSpaceVertical
@@ -106,6 +110,6 @@ extension MyCollectionViewController: UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 20)
+        UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
     }
 }

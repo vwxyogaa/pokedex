@@ -27,8 +27,12 @@ extension UIColor {
 
 // MARK: - color assets
 extension UIColor {
-    /// #37A5C6
-    static var primaryColor: UIColor = UIColor(rgb: 0x37A5C6)
-    /// #F0F2F6
-    static var secondaryColor: UIColor = UIColor(rgb: 0xF0F2F6)
+    /// #37A5C6 Dark Blue
+    static var darkBlueColor: UIColor = UIColor(rgb: 0x37A5C6)
+    /// #40717E Light Blue
+    static var lightBlueColor: UIColor = UIColor(rgb: 0x40717E)
+    /// #F0F2F6 Light Gray
+    static var lightGrayColor: UIColor = UIColor(rgb: 0xF0F2F6)
+    /// #393939 Dark Gray
+    static var darkGrayColor: UIColor = UIColor(rgb: 0x393939)
 }
