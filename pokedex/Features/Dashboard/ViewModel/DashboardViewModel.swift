@@ -27,6 +27,11 @@ class DashboardViewModel {
     let completeRequest: Observable<Bool> = Observable(false)
     let errorMessage: Observable<String?> = Observable(nil)
     
+    func refresh() {
+        self.page = 1
+        self.getPokemonList()
+    }
+    
     private func calculateTotalPage(totalData: Int) {
         totalPage = (totalData % pageSize == 0) ? totalData/pageSize : (totalData/pageSize + 1)
     }

@@ -83,8 +83,7 @@ class DashboardViewController: UIViewController {
     @objc
     private func refreshData() {
         self.refreshControl.beginRefreshing()
-        self.viewModel.page = 1
-        self.viewModel.getPokemonList()
+        self.viewModel.refresh()
     }
 }
 
