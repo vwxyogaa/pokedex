@@ -10,6 +10,8 @@
 		BC088CF82990E22F00F3961D /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088CF72990E22F00F3961D /* Toast.swift */; };
 		BC088CFA2990E26C00F3961D /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088CF92990E26C00F3961D /* UIViewControllerExtension.swift */; };
 		BC28402B2990DBC800BC63B4 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC28402A2990DBC800BC63B4 /* UIColorExtension.swift */; };
+		BC53EF5F299A15DD00BEE7D8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BC53EF5E299A15DD00BEE7D8 /* Lottie */; };
+		BC53EF62299A242F00BEE7D8 /* pokeball_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BC53EF61299A242F00BEE7D8 /* pokeball_loading.json */; };
 		BC5B383B2993AA7000E8BCDA /* pokedex.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC5B38392993AA7000E8BCDA /* pokedex.xcdatamodeld */; };
 		BC5B383D2993B10700E8BCDA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5B383C2993B10700E8BCDA /* Utils.swift */; };
 		BC5B38462993B70B00E8BCDA /* DetailPokemonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5B38452993B70B00E8BCDA /* DetailPokemonViewModel.swift */; };
@@ -76,6 +78,7 @@
 		BC088CF72990E22F00F3961D /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		BC088CF92990E26C00F3961D /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		BC28402A2990DBC800BC63B4 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		BC53EF61299A242F00BEE7D8 /* pokeball_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pokeball_loading.json; sourceTree = "<group>"; };
 		BC5B383A2993AA7000E8BCDA /* pokedex.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pokedex.xcdatamodel; sourceTree = "<group>"; };
 		BC5B383C2993B10700E8BCDA /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BC5B38452993B70B00E8BCDA /* DetailPokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonViewModel.swift; sourceTree = "<group>"; };
@@ -130,6 +133,7 @@
 				BC9A6898298BBE810027A87F /* Kingfisher in Frameworks */,
 				BC9A6895298BBE5E0027A87F /* Alamofire in Frameworks */,
 				BC9A689B298BBEB90027A87F /* netfox in Frameworks */,
+				BC53EF5F299A15DD00BEE7D8 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +154,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC53EF60299A242300BEE7D8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				BC53EF61299A242F00BEE7D8 /* pokeball_loading.json */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		BC5B38472993B70E00E8BCDA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +270,7 @@
 		BC9A689C298BBF970027A87F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BC53EF60299A242300BEE7D8 /* Assets */,
 				BC5B383C2993B10700E8BCDA /* Utils.swift */,
 				BCD8D37A298BD40E00C3FA12 /* Observable.swift */,
 				BC9A6841298934300027A87F /* AppDelegate.swift */,
@@ -423,6 +436,7 @@
 				BC9A6894298BBE5E0027A87F /* Alamofire */,
 				BC9A6897298BBE810027A87F /* Kingfisher */,
 				BC9A689A298BBEB90027A87F /* netfox */,
+				BC53EF5E299A15DD00BEE7D8 /* Lottie */,
 			);
 			productName = pokedex;
 			productReference = BC9A683E298934300027A87F /* pokedex.app */;
@@ -500,6 +514,7 @@
 				BC9A6893298BBE5E0027A87F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BC9A6896298BBE810027A87F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				BC9A6899298BBEB90027A87F /* XCRemoteSwiftPackageReference "netfox" */,
+				BC53EF5D299A15DD00BEE7D8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = BC9A683F298934300027A87F /* Products */;
 			projectDirPath = "";
@@ -518,6 +533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC9A687A29893A190027A87F /* MyCollectionViewController.xib in Resources */,
+				BC53EF62299A242F00BEE7D8 /* pokeball_loading.json in Resources */,
 				E1D15BEC298D61B900AF0012 /* AboutViewController.xib in Resources */,
 				E1BF746D298AE1F800A2FE45 /* PokemonListCollectionViewCell.xib in Resources */,
 				BC9A684E298934320027A87F /* LaunchScreen.storyboard in Resources */,
@@ -916,6 +932,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BC53EF5D299A15DD00BEE7D8 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		BC9A6893298BBE5E0027A87F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -943,6 +967,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BC53EF5E299A15DD00BEE7D8 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC53EF5D299A15DD00BEE7D8 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		BC9A6894298BBE5E0027A87F /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BC9A6893298BBE5E0027A87F /* XCRemoteSwiftPackageReference "Alamofire" */;

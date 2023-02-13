@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Lottie
 
 class DetailPokemonViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
@@ -17,6 +18,8 @@ class DetailPokemonViewController: UIViewController {
     @IBOutlet weak var statsSegmentedController: CustomSegmentedControl!
     @IBOutlet weak var contentStatsView: UIView!
     @IBOutlet weak var catchButton: UIButton!
+    @IBOutlet weak var containerPokeballAnimationView: UIView!
+    @IBOutlet weak var pokeballAnimationView: LottieAnimationView!
     
     private lazy var aboutViewController = AboutViewController()
     private lazy var baseStatsViewController = BaseStatsViewController()
@@ -159,7 +162,13 @@ class DetailPokemonViewController: UIViewController {
     private func catchButtonClicked(_ sender: UIButton) {
         if sender.tag == 0 {
             let catchPokemon = Bool.random()
-            catchPokemon ? self.dialogSuccessCatch() : self.dialogFailedCatch()
+            catchButton.isEnabled = false
+            containerPokeballAnimationView.isHidden = false
+            pokeballAnimationView.play(fromProgress: 0, toProgress: 1, loopMode: .repeat(2)) { _ in
+                self.catchButton.isEnabled = true
+                self.containerPokeballAnimationView.isHidden = true
+                catchPokemon ? self.dialogSuccessCatch() : self.dialogFailedCatch()
+            }
         } else {
             self.dialogRelease()
         }
