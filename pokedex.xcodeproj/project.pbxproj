@@ -162,6 +162,16 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		BC53EF63299A27D200BEE7D8 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BC9A6841298934300027A87F /* AppDelegate.swift */,
+				BC9A6843298934300027A87F /* SceneDelegate.swift */,
+				BC9A684C298934320027A87F /* LaunchScreen.storyboard */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		BC5B38472993B70E00E8BCDA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +211,7 @@
 		BC9A6840298934300027A87F /* pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				BC53EF63299A27D200BEE7D8 /* Base */,
 				E1D15BE3298D597D00AF0012 /* Extensions */,
 				E1D15BE0298D589D00AF0012 /* LibraryThirdParty */,
 				BC9A689D298BC0D70027A87F /* Repository */,
@@ -271,12 +282,9 @@
 			isa = PBXGroup;
 			children = (
 				BC53EF60299A242300BEE7D8 /* Assets */,
+				BC9A684A298934320027A87F /* Assets.xcassets */,
 				BC5B383C2993B10700E8BCDA /* Utils.swift */,
 				BCD8D37A298BD40E00C3FA12 /* Observable.swift */,
-				BC9A6841298934300027A87F /* AppDelegate.swift */,
-				BC9A6843298934300027A87F /* SceneDelegate.swift */,
-				BC9A684A298934320027A87F /* Assets.xcassets */,
-				BC9A684C298934320027A87F /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
