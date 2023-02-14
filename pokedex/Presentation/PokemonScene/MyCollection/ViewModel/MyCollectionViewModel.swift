@@ -8,12 +8,12 @@
 import Foundation
 
 class MyCollectionViewModel {
-    private let repository = Repository.shared
+    private let localRepository = LocalRepository.shared
     
     let myCollections: Observable<[PokemonCollection]> = Observable([])
     
     func getMyCollections(){
-        repository.getMyCollections { myCollections in
+        localRepository.getMyCollections { myCollections in
             self.myCollections.value = myCollections
         }
     }

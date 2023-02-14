@@ -1,58 +1,24 @@
 //
-//  Repository.swift
+//  LocalRepository.swift
 //  pokedex
 //
-//  Created by Panji Yoga on 02/02/23.
+//  Created by Panji Yoga on 14/02/23.
 //
 
 import Foundation
-import Alamofire
 import CoreData
 import UIKit
 
-protocol RepositoryProtocol {
-    // MARK: - remote
-    func getPokemonList(page: Int, size: Int, completion: @escaping (PokemonList?, _ errorMessage: String?) -> Void)
-    func getPokemonDetail(name: String, completion: @escaping (Pokemon?) -> Void)
-    // MARK: - local
+protocol LocalRepositoryProtocol {
     func catchPokemon(nickname: String, pokemon: Pokemon)
     func checkPokemonInCollection(pokemonId: Int?, completion: @escaping (_ isCatched: Bool, _ nickname: String?) -> Void)
     func getMyCollections(completion: @escaping ([PokemonCollection]) -> Void)
     func releasedPokemon(nickname: String, completion: @escaping () -> Void)
 }
 
-class Repository: RepositoryProtocol {
-    static let shared = Repository()
+class LocalRepository: LocalRepositoryProtocol {
+    static let shared = LocalRepository()
     
-    private let baseURL = "https://pokeapi.co/api/v2/pokemon"
-    
-    // MARK: - remote
-    func getPokemonList(page: Int, size: Int, completion: @escaping(PokemonList?, _ errorMessage: String?) -> Void) {
-        let offset = (page - 1) * size
-        let fullUrl = "\(baseURL)?offset=\(offset)&limit=\(size)"
-        AF.request(fullUrl).validate().responseDecodable(of: PokemonList.self) { response in
-            switch response.result {
-            case .success(let data):
-                completion(data, nil)
-            case .failure(let error):
-                completion(nil, error.localizedDescription)
-            }
-        }
-    }
-    
-    func getPokemonDetail(name: String, completion: @escaping(Pokemon?) -> Void) {
-        let fullUrl = "\(baseURL)/\(name)"
-        AF.request(fullUrl).validate().responseDecodable(of: Pokemon.self) { response in
-            switch response.result {
-            case .success(let data):
-                completion(data)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    // MARK: - local
     func catchPokemon(nickname: String, pokemon: Pokemon) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext

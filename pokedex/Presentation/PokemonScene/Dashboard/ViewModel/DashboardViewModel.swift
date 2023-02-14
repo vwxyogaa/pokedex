@@ -8,7 +8,7 @@
 import Foundation
 
 class DashboardViewModel {
-    private let repository = Repository.shared
+    private let remoteRepository = RemoteRepository.shared
     
     // MARK: - dispatch
     let group = DispatchGroup()
@@ -39,7 +39,7 @@ class DashboardViewModel {
     func getPokemonList() {
         isLoading.value = true
         group.enter()
-        repository.getPokemonList(page: page, size: pageSize) { result, errorMessage in
+        remoteRepository.getPokemonList(page: page, size: pageSize) { result, errorMessage in
             if let errorMessage {
                 self.errorMessage.value = errorMessage
                 // if wanna clear data
@@ -81,7 +81,7 @@ class DashboardViewModel {
     
     func getPokemonDetail(name: String) {
         group.enter()
-        self.repository.getPokemonDetail(name: name) { result in
+        remoteRepository.getPokemonDetail(name: name) { result in
             if let result {
                 self.pokemonDetail.append(result)
             }
