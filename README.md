@@ -16,5 +16,5 @@ Pokedex is an application that can display pokemon data. in this app we can catc
 * [Lottie](https://github.com/airbnb/lottie-ios)
 * [Netfox](https://github.com/kasketis/netfox)
 
-## API ###
+### API ###
 * [Pokemon API](https://pokeapi.co)
