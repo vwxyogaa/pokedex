@@ -12,9 +12,7 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    #if DEBUG
-        NFX.sharedInstance().start()
-    #endif
+        configureNetfox()
         return true
     }
 
@@ -52,5 +50,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    // MARK: - netfox
+    fileprivate func configureNetfox() {
+    #if DEBUG
+        NFX.sharedInstance().start()
+    #endif
     }
 }
