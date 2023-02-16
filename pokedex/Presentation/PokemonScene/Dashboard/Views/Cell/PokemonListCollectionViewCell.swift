@@ -28,18 +28,18 @@ class PokemonListCollectionViewCell: UICollectionViewCell {
         self.containerTypeTwoView.layer.cornerRadius = 5
     }
     
-    func configureContentDashboard(pokemon: Pokemon) {
+    func configureContentDashboard(pokemon: Pokemon?) {
         var typeTwo: String?
-        if let types = pokemon.types, types.count > 1 {
+        if let types = pokemon?.types, types.count > 1 {
             typeTwo = types.last?.type?.name?.capitalized
         }
-        self.namePokemonLabel.text = pokemon.name?.capitalized
-        self.numberPokemonLabel.text = pokemon.tag
-        self.typeOnePokemonLabel.text = pokemon.types?.first?.type?.name?.capitalized
+        self.namePokemonLabel.text = pokemon?.name?.capitalized
+        self.numberPokemonLabel.text = pokemon?.tag
+        self.typeOnePokemonLabel.text = pokemon?.types?.first?.type?.name?.capitalized
         self.typeTwoPokemonLabel.text = typeTwo ?? "-"
-        if let imageUrl = pokemon.sprites?.versions?.generationV?.blackWhite?.animated?.frontDefault {
+        if let imageUrl = pokemon?.sprites?.versions?.generationV?.blackWhite?.animated?.frontDefault {
             self.pokemonImageView.loadImage(uri: imageUrl, placeholder: getUIImage(named: "pokeball"))
-        } else if let imageUrl = pokemon.sprites?.other?.officialArtwork?.frontDefault {
+        } else if let imageUrl = pokemon?.sprites?.other?.officialArtwork?.frontDefault {
             self.pokemonImageView.loadImage(uri: imageUrl, placeholder: getUIImage(named: "pokeball"))
         } else {
             self.pokemonImageView.image = getUIImage(named: "pokeball")

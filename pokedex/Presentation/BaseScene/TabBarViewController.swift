@@ -33,7 +33,7 @@ class TabBarViewController: UITabBarController {
         dashboardController.tabBarItem.title = "Dashboard"
         dashboardController.tabBarItem.image = UIImage(systemName: "house")
         dashboardController.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
-        let dashboardViewModel = DashboardViewModel()
+        let dashboardViewModel = DashboardViewModel(dashboardUseCase: Injection().provideDashboardUseCase())
         dashboardController.viewModel = dashboardViewModel
         return dashboardController
     }
@@ -43,8 +43,8 @@ class TabBarViewController: UITabBarController {
         myCollectionController.tabBarItem.title = "My Collection"
         myCollectionController.tabBarItem.image = UIImage(systemName: "bookmark")
         myCollectionController.tabBarItem.selectedImage = UIImage(systemName: "bookmark.fill")
-        let myCollectionViewModel = MyCollectionViewModel()
-        myCollectionController.viewModel = myCollectionViewModel
+//        let myCollectionViewModel = MyCollectionViewModel()
+//        myCollectionController.viewModel = myCollectionViewModel
         return myCollectionController
     }
 }

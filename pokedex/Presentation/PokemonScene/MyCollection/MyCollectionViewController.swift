@@ -16,7 +16,7 @@ class MyCollectionViewController: UIViewController {
         return refreshControl
     }()
     
-    var viewModel: MyCollectionViewModel!
+//    var viewModel: MyCollectionViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class MyCollectionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.viewModel.getMyCollections()
+//        self.viewModel.getMyCollections()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,10 +45,10 @@ class MyCollectionViewController: UIViewController {
     }
     
     private func initObservers() {
-        viewModel.myCollections.observe(on: self) { pokeCollection in
-            self.pokemonListCollectionView.reloadData()
-            self.refreshControl.endRefreshing()
-        }
+//        viewModel.myCollections.observe(on: self) { pokeCollection in
+//            self.pokemonListCollectionView.reloadData()
+//            self.refreshControl.endRefreshing()
+//        }
     }
     
     private func configureBackgroundContainerView() {
@@ -69,32 +69,33 @@ class MyCollectionViewController: UIViewController {
     @objc
     private func refreshData() {
         self.refreshControl.beginRefreshing()
-        self.viewModel.getMyCollections()
+//        self.viewModel.getMyCollections()
     }
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension MyCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (viewModel.myCollections.value.count == 0) {
-            self.pokemonListCollectionView.setBackground(imageName: "ic_empty_items", messageImage: "You don't have any pokemon in bag")
-        } else {
-            self.pokemonListCollectionView.clearBackground()
-        }
-        return viewModel.myCollections.value.count
+//        if (viewModel.myCollections.value.count == 0) {
+//            self.pokemonListCollectionView.setBackground(imageName: "ic_empty_items", messageImage: "You don't have any pokemon in bag")
+//        } else {
+//            self.pokemonListCollectionView.clearBackground()
+//        }
+//        return viewModel.myCollections.value.count
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonListCollectionViewCell", for: indexPath) as? PokemonListCollectionViewCell else { return UICollectionViewCell() }
-        let myCollection = viewModel.myCollections.value[indexPath.row]
-        cell.configureContentMyCollection(myCollection: myCollection)
+//        let myCollection = viewModel.myCollections.value[indexPath.row]
+//        cell.configureContentMyCollection(myCollection: myCollection)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = DetailPokemonViewController()
-        let detailPokemonViewModel = DetailPokemonViewModel(myCollection: viewModel.myCollections.value[indexPath.row])
-        detailViewController.viewModel = detailPokemonViewModel
+//        let detailPokemonViewModel = DetailPokemonViewModel(myCollection: viewModel.myCollections.value[indexPath.row])
+//        detailViewController.viewModel = detailPokemonViewModel
         detailViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
