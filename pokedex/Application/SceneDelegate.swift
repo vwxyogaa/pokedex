@@ -24,4 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabController?.tabBar.backgroundColor = UIColor(named: "GrayBgColor")
         tabController?.tabBar.tintColor = UIColor(named: "BlueColor")
     }
+    
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    }
 }
