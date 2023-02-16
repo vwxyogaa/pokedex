@@ -38,6 +38,8 @@
 		BC9A68A2298BC2680027A87F /* PokemonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9A68A1298BC2680027A87F /* PokemonList.swift */; };
 		BC9A68A4298BC3100027A87F /* PokemonResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9A68A3298BC3100027A87F /* PokemonResults.swift */; };
 		BC9A68A6298BC5F50027A87F /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9A68A5298BC5F50027A87F /* Pokemon.swift */; };
+		BCCA00F6299E22000075AA6D /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCA00F5299E22000075AA6D /* UIImageViewExtension.swift */; };
+		BCCA00F8299E22C60075AA6D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCA00F7299E22C60075AA6D /* UIViewExtension.swift */; };
 		BCD8D37B298BD40E00C3FA12 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8D37A298BD40E00C3FA12 /* Observable.swift */; };
 		BCD8D37F298BD43D00C3FA12 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8D37E298BD43D00C3FA12 /* DashboardViewModel.swift */; };
 		BCD8D38E298D1B0800C3FA12 /* DetailPokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8D38C298D1B0800C3FA12 /* DetailPokemonViewController.swift */; };
@@ -107,6 +109,8 @@
 		BC9A68A1298BC2680027A87F /* PokemonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonList.swift; sourceTree = "<group>"; };
 		BC9A68A3298BC3100027A87F /* PokemonResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonResults.swift; sourceTree = "<group>"; };
 		BC9A68A5298BC5F50027A87F /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		BCCA00F5299E22000075AA6D /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		BCCA00F7299E22C60075AA6D /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BCD8D37A298BD40E00C3FA12 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		BCD8D37E298BD43D00C3FA12 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		BCD8D38C298D1B0800C3FA12 /* DetailPokemonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPokemonViewController.swift; sourceTree = "<group>"; };
@@ -418,10 +422,12 @@
 		E1D15BE3298D597D00AF0012 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E1D15BE6298D59B100AF0012 /* CollectionExtension.swift */,
-				BC28402A2990DBC800BC63B4 /* UIColorExtension.swift */,
-				BC088CF92990E26C00F3961D /* UIViewControllerExtension.swift */,
 				BC5B384D2994FFDB00E8BCDA /* UICollectionViewExtension.swift */,
+				BCCA00F5299E22000075AA6D /* UIImageViewExtension.swift */,
+				BC088CF92990E26C00F3961D /* UIViewControllerExtension.swift */,
+				BCCA00F7299E22C60075AA6D /* UIViewExtension.swift */,
+				BC28402A2990DBC800BC63B4 /* UIColorExtension.swift */,
+				E1D15BE6298D59B100AF0012 /* CollectionExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -635,11 +641,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCCA00F6299E22000075AA6D /* UIImageViewExtension.swift in Sources */,
 				BCD8D37B298BD40E00C3FA12 /* Observable.swift in Sources */,
 				BC9A68A2298BC2680027A87F /* PokemonList.swift in Sources */,
 				BCD8D37F298BD43D00C3FA12 /* DashboardViewModel.swift in Sources */,
 				E1BF746C298AE1F800A2FE45 /* PokemonListCollectionViewCell.swift in Sources */,
 				BC5B383D2993B10700E8BCDA /* Utils.swift in Sources */,
+				BCCA00F8299E22C60075AA6D /* UIViewExtension.swift in Sources */,
 				E1D15BF5298D61E000AF0012 /* MovesViewController.swift in Sources */,
 				BC5887F3299B855100C821BF /* RemoteRepository.swift in Sources */,
 				BC5B38492994D85700E8BCDA /* MyCollectionViewModel.swift in Sources */,

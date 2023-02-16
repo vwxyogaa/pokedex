@@ -87,10 +87,10 @@ class DetailPokemonViewController: UIViewController {
         guard let number = pokemon?.id else { return }
         self.numberPokemonLabel.text = "#\(number)"
         self.namePokemonLabel.text = (viewModel.nickname != nil) ? "\(pokemon?.name?.capitalized ?? "") (\(viewModel.nickname ?? ""))" : pokemon?.name?.capitalized
-        if let imageUrl = pokemon?.sprites?.other?.officialArtwork?.frontDefault, let url = URL(string: imageUrl) {
-            self.imagePokemon.kf.setImage(with: url, placeholder: UIImage(named: "pokeball"))
+        if let imageUrl = pokemon?.sprites?.other?.officialArtwork?.frontDefault {
+            self.imagePokemon.loadImage(uri: imageUrl, placeholder: getUIImage(named: "pokeball"))
         } else {
-            self.imagePokemon.image = UIImage(named: "pokeball")
+            self.imagePokemon.image = getUIImage(named: "pokeball")
         }
     }
     

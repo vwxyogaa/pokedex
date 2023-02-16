@@ -25,3 +25,10 @@ extension UIViewController {
         self.view.hideToastActivity()
     }
 }
+
+// MARK: - get image
+extension UIViewController {
+    func getUIImage(named: String) -> UIImage {
+        return UIImage(named: named) ?? UIImage(systemName: "minus.circle.fill")!
+    }
+}

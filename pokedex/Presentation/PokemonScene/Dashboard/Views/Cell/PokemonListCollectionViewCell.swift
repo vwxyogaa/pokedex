@@ -38,12 +38,12 @@ class PokemonListCollectionViewCell: UICollectionViewCell {
         self.numberPokemonLabel.text = pokemon.tag
         self.typeOnePokemonLabel.text = pokemon.types?.first?.type?.name?.capitalized
         self.typeTwoPokemonLabel.text = typeTwo ?? "-"
-        if let imageUrl = pokemon.sprites?.versions?.generationV?.blackWhite?.animated?.frontDefault, let url = URL(string: imageUrl) {
-            self.pokemonImageView.kf.setImage(with: url, placeholder: UIImage(named: "pokeball"))
-        } else if let imageUrl = pokemon.sprites?.other?.officialArtwork?.frontDefault, let url = URL(string: imageUrl) {
-            self.pokemonImageView.kf.setImage(with: url, placeholder: UIImage(named: "pokeball"))
+        if let imageUrl = pokemon.sprites?.versions?.generationV?.blackWhite?.animated?.frontDefault {
+            self.pokemonImageView.loadImage(uri: imageUrl, placeholder: getUIImage(named: "pokeball"))
+        } else if let imageUrl = pokemon.sprites?.other?.officialArtwork?.frontDefault {
+            self.pokemonImageView.loadImage(uri: imageUrl, placeholder: getUIImage(named: "pokeball"))
         } else {
-            self.pokemonImageView.image = UIImage(named: "pokeball")
+            self.pokemonImageView.image = getUIImage(named: "pokeball")
         }
     }
     
@@ -56,12 +56,12 @@ class PokemonListCollectionViewCell: UICollectionViewCell {
         self.numberPokemonLabel.text = "(\(myCollection.nickname))"
         self.typeOnePokemonLabel.text = myCollection.pokemon.types?.first?.type?.name?.capitalized
         self.typeTwoPokemonLabel.text = typeTwo ?? "-"
-        if let imageUrl = myCollection.pokemon.sprites?.versions?.generationV?.blackWhite?.animated?.frontDefault, let url = URL(string: imageUrl) {
-            self.pokemonImageView.kf.setImage(with: url, placeholder: UIImage(named: "pokeball"))
-        } else if let imageUrl = myCollection.pokemon.sprites?.other?.officialArtwork?.frontDefault, let url = URL(string: imageUrl) {
-            self.pokemonImageView.kf.setImage(with: url, placeholder: UIImage(named: "pokeball"))
+        if let imageUrl = myCollection.pokemon.sprites?.versions?.generationV?.blackWhite?.animated?.frontDefault {
+            self.pokemonImageView.loadImage(uri: imageUrl, placeholder: getUIImage(named: "pokeball"))
+        } else if let imageUrl = myCollection.pokemon.sprites?.other?.officialArtwork?.frontDefault {
+            self.pokemonImageView.loadImage(uri: imageUrl, placeholder: getUIImage(named: "pokeball"))
         } else {
-            self.pokemonImageView.image = UIImage(named: "pokeball")
+            self.pokemonImageView.image = getUIImage(named: "pokeball")
         }
     }
 }

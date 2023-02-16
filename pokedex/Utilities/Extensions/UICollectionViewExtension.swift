@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - background
 extension UICollectionView {
     func setBackground(imageName: String, messageImage: String?) {
         let parentView = UIView()
