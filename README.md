@@ -1,11 +1,8 @@
 # Pokedex #
-Pokedex is an application that can display pokemon data. in this app we can catch pokemon where the pokemon will be stored locally using coredata.
+Pokedex is an application that can display pokemon information. in this app we can catch pokemon where the pokemon will be stored locally using coredata.
 
 ### Screenshots ###
-<img src="screenshots/1.png" width="200">
-<img src="screenshots/2.png" width="200">
-<img src="screenshots/3.png" width="200">
-<img src="screenshots/4.png" width="200">
+<img src="screenshots/1.png" width="200"> <img src="screenshots/2.png" width="200"> <img src="screenshots/3.png" width="200"> <img src="screenshots/4.png" width="200">
 
 ### Tech & Dependencies ###
 * [Swift](https://developer.apple.com/swift/)
