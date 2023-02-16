@@ -77,9 +77,9 @@ class MyCollectionViewController: UIViewController {
 extension MyCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (viewModel.myCollections.value.count == 0) {
-            self.pokemonListCollectionView.setEmptyMessage("You don't have any pokemon in bag")
+            self.pokemonListCollectionView.setBackground(imageName: "ic_empty_items", messageImage: "You don't have any pokemon in bag")
         } else {
-            self.pokemonListCollectionView.restore()
+            self.pokemonListCollectionView.clearBackground()
         }
         return viewModel.myCollections.value.count
     }

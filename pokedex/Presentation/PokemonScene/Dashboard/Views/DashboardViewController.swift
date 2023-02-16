@@ -55,16 +55,13 @@ class DashboardViewController: UIViewController {
         
         viewModel.completeRequest.observe(on: self) { requestComplete in
             if requestComplete {
+                if self.viewModel.pokemonList.isEmpty {
+                    self.pokemonListCollectionView.setBackground(imageName: "ic_empty_items", messageImage: "Not Found")
+                } else {
+                    self.pokemonListCollectionView.clearBackground()
+                }
                 self.pokemonListCollectionView.reloadData()
                 self.refreshControl.endRefreshing()
-            }
-        }
-        
-        viewModel.errorMessage.observe(on: self) { errorMessage in
-            if let errorMessage {
-                self.connectionLostMessage(title: "", message: errorMessage) { _ in
-                    self.viewModel.getPokemonList()
-                }
             }
         }
     }
