@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class PokemonListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!

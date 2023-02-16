@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 import Lottie
 
 class DetailPokemonViewController: UIViewController {
