@@ -40,6 +40,7 @@
 		BC9A68A6298BC5F50027A87F /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9A68A5298BC5F50027A87F /* Pokemon.swift */; };
 		BCCA00F6299E22000075AA6D /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCA00F5299E22000075AA6D /* UIImageViewExtension.swift */; };
 		BCCA00F8299E22C60075AA6D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCA00F7299E22C60075AA6D /* UIViewExtension.swift */; };
+		BCCA00FC299E2D250075AA6D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BCCA00FB299E2D250075AA6D /* RxSwift */; };
 		BCD8D37B298BD40E00C3FA12 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8D37A298BD40E00C3FA12 /* Observable.swift */; };
 		BCD8D37F298BD43D00C3FA12 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8D37E298BD43D00C3FA12 /* DashboardViewModel.swift */; };
 		BCD8D38E298D1B0800C3FA12 /* DetailPokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8D38C298D1B0800C3FA12 /* DetailPokemonViewController.swift */; };
@@ -138,6 +139,7 @@
 			files = (
 				BC9A6898298BBE810027A87F /* Kingfisher in Frameworks */,
 				BC9A6895298BBE5E0027A87F /* Alamofire in Frameworks */,
+				BCCA00FC299E2D250075AA6D /* RxSwift in Frameworks */,
 				BC9A689B298BBEB90027A87F /* netfox in Frameworks */,
 				BC53EF5F299A15DD00BEE7D8 /* Lottie in Frameworks */,
 			);
@@ -510,6 +512,7 @@
 				BC9A6897298BBE810027A87F /* Kingfisher */,
 				BC9A689A298BBEB90027A87F /* netfox */,
 				BC53EF5E299A15DD00BEE7D8 /* Lottie */,
+				BCCA00FB299E2D250075AA6D /* RxSwift */,
 			);
 			productName = pokedex;
 			productReference = BC9A683E298934300027A87F /* pokedex.app */;
@@ -588,6 +591,7 @@
 				BC9A6896298BBE810027A87F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				BC9A6899298BBEB90027A87F /* XCRemoteSwiftPackageReference "netfox" */,
 				BC53EF5D299A15DD00BEE7D8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				BCCA00FA299E2D250075AA6D /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = BC9A683F298934300027A87F /* Products */;
 			projectDirPath = "";
@@ -1040,6 +1044,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		BCCA00FA299E2D250075AA6D /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1062,6 +1074,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC9A6899298BBEB90027A87F /* XCRemoteSwiftPackageReference "netfox" */;
 			productName = netfox;
+		};
+		BCCA00FB299E2D250075AA6D /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCCA00FA299E2D250075AA6D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 
