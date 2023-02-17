@@ -635,6 +635,7 @@
 				BC9A6850298934320027A87F /* Sources */,
 				BC9A6851298934320027A87F /* Frameworks */,
 				BC9A6852298934320027A87F /* Resources */,
+				6FBCECA104B9F478A748BCEC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -767,6 +768,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pokedex/Pods-pokedex-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6FBCECA104B9F478A748BCEC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pokedexTests/Pods-pokedexTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pokedexTests/Pods-pokedexTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pokedexTests/Pods-pokedexTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7DD3404DD49EA08F82EE00C3 /* [CP] Check Pods Manifest.lock */ = {
