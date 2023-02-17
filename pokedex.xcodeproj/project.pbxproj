@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BC088CF82990E22F00F3961D /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088CF72990E22F00F3961D /* Toast.swift */; };
 		BC088CFA2990E26C00F3961D /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC088CF92990E26C00F3961D /* UIViewControllerExtension.swift */; };
+		BC0BCE2E299FAB0200EF42CD /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BC0BCE2D299FAB0200EF42CD /* RxCocoa */; };
+		BC0BCE30299FAB0200EF42CD /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC0BCE2F299FAB0200EF42CD /* RxSwift */; };
 		BC28402B2990DBC800BC63B4 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC28402A2990DBC800BC63B4 /* UIColorExtension.swift */; };
 		BC53EF5F299A15DD00BEE7D8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BC53EF5E299A15DD00BEE7D8 /* Lottie */; };
 		BC53EF62299A242F00BEE7D8 /* pokeball_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BC53EF61299A242F00BEE7D8 /* pokeball_loading.json */; };
@@ -150,8 +152,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC0BCE30299FAB0200EF42CD /* RxSwift in Frameworks */,
 				BC9A6898298BBE810027A87F /* Kingfisher in Frameworks */,
 				BC9A6895298BBE5E0027A87F /* Alamofire in Frameworks */,
+				BC0BCE2E299FAB0200EF42CD /* RxCocoa in Frameworks */,
 				BC9A689B298BBEB90027A87F /* netfox in Frameworks */,
 				BC53EF5F299A15DD00BEE7D8 /* Lottie in Frameworks */,
 			);
@@ -579,6 +583,8 @@
 				BC9A6897298BBE810027A87F /* Kingfisher */,
 				BC9A689A298BBEB90027A87F /* netfox */,
 				BC53EF5E299A15DD00BEE7D8 /* Lottie */,
+				BC0BCE2D299FAB0200EF42CD /* RxCocoa */,
+				BC0BCE2F299FAB0200EF42CD /* RxSwift */,
 			);
 			productName = pokedex;
 			productReference = BC9A683E298934300027A87F /* pokedex.app */;
@@ -657,6 +663,7 @@
 				BC9A6896298BBE810027A87F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				BC9A6899298BBEB90027A87F /* XCRemoteSwiftPackageReference "netfox" */,
 				BC53EF5D299A15DD00BEE7D8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				BC0BCE2C299FAB0200EF42CD /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = BC9A683F298934300027A87F /* Products */;
 			projectDirPath = "";
@@ -1084,6 +1091,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BC0BCE2C299FAB0200EF42CD /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		BC53EF5D299A15DD00BEE7D8 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -1119,6 +1134,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BC0BCE2D299FAB0200EF42CD /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC0BCE2C299FAB0200EF42CD /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		BC0BCE2F299FAB0200EF42CD /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC0BCE2C299FAB0200EF42CD /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
 		BC53EF5E299A15DD00BEE7D8 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BC53EF5D299A15DD00BEE7D8 /* XCRemoteSwiftPackageReference "lottie-ios" */;
