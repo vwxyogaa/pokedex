@@ -43,8 +43,8 @@ class TabBarViewController: UITabBarController {
         myCollectionController.tabBarItem.title = "My Collection"
         myCollectionController.tabBarItem.image = UIImage(systemName: "bookmark")
         myCollectionController.tabBarItem.selectedImage = UIImage(systemName: "bookmark.fill")
-//        let myCollectionViewModel = MyCollectionViewModel()
-//        myCollectionController.viewModel = myCollectionViewModel
+        let myCollectionViewModel = MyCollectionViewModel(myCollectionUseCase: Injection().provideMyCollectionsUseCase())
+        myCollectionController.viewModel = myCollectionViewModel
         return myCollectionController
     }
 }

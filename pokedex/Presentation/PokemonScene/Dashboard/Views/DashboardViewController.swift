@@ -24,7 +24,6 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         configureViews()
         initObservers()
-//        configureData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,26 +45,7 @@ class DashboardViewController: UIViewController {
         configureCollectionView()
     }
     
-//    private func configureData() {
-//        viewModel.getPokemonList()
-//    }
-    
     private func initObservers() {
-//        viewModel.isLoading.observe(on: self) { isLoading in
-//            self.manageLoadingActivity(isLoading: isLoading)
-//        }
-//
-//        viewModel.completeRequest.observe(on: self) { requestComplete in
-//            if requestComplete {
-//                if self.viewModel.pokemonList.isEmpty {
-//                    self.pokemonListCollectionView.setBackground(imageName: "ic_empty_items", messageImage: "Not Found")
-//                } else {
-//                    self.pokemonListCollectionView.clearBackground()
-//                }
-//                self.pokemonListCollectionView.reloadData()
-//                self.refreshControl.endRefreshing()
-//            }
-//        }
         viewModel.pokemons.drive(onNext: { [weak self] pokemon in
             if pokemon.isEmpty {
                 self?.pokemonListCollectionView.setBackground(imageName: "ic_empty_items", messageImage: "Not Found")
@@ -86,7 +66,6 @@ class DashboardViewController: UIViewController {
     private func configureCollectionView() {
         self.pokemonListCollectionView.register(UINib(nibName: "PokemonListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PokemonListCollectionViewCell")
         self.refreshControl.addTarget(self, action: #selector(self.refreshData), for: .valueChanged)
-//        self.pokemonListCollectionView.addSubview(refreshControl)
         self.pokemonListCollectionView.refreshControl = refreshControl
         self.pokemonListCollectionView.refreshControl?.beginRefreshing()
         self.pokemonListCollectionView.dataSource = self
@@ -103,13 +82,11 @@ class DashboardViewController: UIViewController {
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return viewModel.pokemonList.count
         return viewModel.pokemonsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonListCollectionViewCell", for: indexPath) as? PokemonListCollectionViewCell else { return UICollectionViewCell() }
-//        let pokemon = viewModel.pokemonDetail[indexPath.row]
         let pokemon = viewModel.pokemon(at: indexPath.row)
         cell.configureContentDashboard(pokemon: pokemon)
         viewModel.loadNextPage(index: indexPath.row)
@@ -118,10 +95,8 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = DetailPokemonViewController()
-//        detailViewController.pokemonDetail = viewModel.pokemonDetail[indexPath.row]
-//        let detailPokemonViewModel = DetailPokemonViewModel(pokemon: viewModel.pokemonDetail[indexPath.row])
-//        let detailPokemonViewModel =
-//        detailViewController.viewModel = detailPokemonViewModel
+        let detailPokemonViewModel = DetailPokemonViewModel(detailUseCase: Injection().provideDetailUeCase(), pokemon: viewModel.pokemon(at: indexPath.row))
+        detailViewController.viewModel = detailPokemonViewModel
         detailViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }

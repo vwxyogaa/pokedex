@@ -13,7 +13,7 @@ protocol DashboardUseCaseProtocol {
     func getPokemonDetail(id: Int) -> Observable<Pokemon>
 }
 
-class DashboardUseCase: DashboardUseCaseProtocol {
+final class DashboardUseCase: DashboardUseCaseProtocol {
     private let repository: RepositoryProtocol
     
     init(repository: RepositoryProtocol) {

@@ -13,22 +13,6 @@ class DashboardViewModel: BaseViewModel {
     private let disposeBag = DisposeBag()
     private let dashboardUseCase: DashboardUseCaseProtocol
     
-    // MARK: - dispatch
-//    let group = DispatchGroup()
-//    let semaphore = DispatchSemaphore(value: 0)
-//    let queue = DispatchQueue(label: "com.gcd.Queue")
-    
-    // MARK: - pagination
-//    var page = 1
-//    private var totalPage = 1
-//    private var canLoadNextPage = false
-//    private let pageSize = 20
-    
-//    var pokemonList: [PokemonResults] = []
-//    var pokemonDetail: [Pokemon] = []
-//    let isLoading: Observable<Bool> = Observable(false)
-//    let completeRequest: Observable<Bool> = Observable(false)
-    
     private var pokemonResults = [Pokemon]()
     private var pokemonResultsCount = 0
     private var page = 1
@@ -61,10 +45,6 @@ class DashboardViewModel: BaseViewModel {
         getPokemonList()
     }
     
-//    private func calculateTotalPage(totalData: Int) {
-//        totalPage = (totalData % pageSize == 0) ? totalData/pageSize : (totalData/pageSize + 1)
-//    }
-    
     func getPokemonList() {
         dashboardUseCase.getPokemonList(page: page)
             .observe(on: MainScheduler.instance)
@@ -93,56 +73,6 @@ class DashboardViewModel: BaseViewModel {
             .disposed(by: disposeBag)
     }
     
-//    func getPokemonList() {
-//        isLoading.value = true
-//        group.enter()
-//        remoteRepository.getPokemonList(page: page, size: pageSize) { result, errorConnection in
-//            if errorConnection == true {
-//                //                 if wanna clear data
-//                //                self.pokemonList.removeAll()
-//                //                self.pokemonDetail.removeAll()
-//                self.group.leave()
-//            }
-//            if self.page == 1 {
-//                self.calculateTotalPage(totalData: result?.count ?? 0)
-//                self.pokemonList = result?.results ?? []
-//                guard let pokemon = result?.results else { return }
-//                DispatchQueue.global().async {
-//                    for poke in pokemon {
-//                        self.getPokemonDetail(name: poke.name ?? "")
-//                        self.semaphore.wait()
-//                    }
-//                    self.group.leave()
-//                }
-//            } else {
-//                let newInformations = result?.results
-//                self.pokemonList.append(contentsOf: newInformations ?? [])
-//                guard let pokemon = newInformations else { return }
-//                DispatchQueue.global().async {
-//                    for poke in pokemon {
-//                        self.getPokemonDetail(name: poke.name ?? "")
-//                        self.semaphore.wait()
-//                    }
-//                    self.group.leave()
-//                }
-//            }
-//            self.canLoadNextPage = true
-//            self.page += 1
-//        }
-//        notifyDispatchGroup()
-//    }
-    
-//    func getPokemonDetail(name: String) {
-//        group.enter()
-//        remoteRepository.getPokemonDetail(name: name) { result in
-//            if let result {
-//                self.pokemonDetail.append(result)
-//            }
-//            self.semaphore.signal()
-//            self.group.leave()
-//        }
-//    }
-    
     func loadNextPage(index: Int) {
         if !canLoadNextPage {
             if _pokemons.value.count - 2 == index {
@@ -151,21 +81,4 @@ class DashboardViewModel: BaseViewModel {
             }
         }
     }
-//
-//    func loadNextPage(lastIndex: Int) {
-//        if page <= totalPage && canLoadNextPage {
-//            let totalData = pokemonList.count - 2
-//            if lastIndex == totalData {
-//                getPokemonList()
-//            }
-//        }
-//    }
-//
-//    func notifyDispatchGroup() {
-//        group.notify(queue: .global()) {
-//            self.isLoading.value = false
-//            self.completeRequest.value = true
-//            print("all network request done in page: \(self.page - 1)")
-//        }
-//    }
 }

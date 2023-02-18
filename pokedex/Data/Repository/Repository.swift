@@ -13,28 +13,52 @@ protocol RepositoryProtocol {
     func getPokemonList(page: Int) -> Observable<[Int]>
     func getPokemonDetail(id: Int) -> Observable<Pokemon>
     // MARK: - local
+    func checkPokemonInCollection(pokemonId: Int) -> Observable<Bool>
+    func catchPokemon(nickname: String, pokemon: Pokemon) -> Observable<Bool>
+    func releasedPokemon(nickname: String) -> Observable<Bool>
+    func getMyCollections() -> Observable<[PokemonCollection]>
 }
 
 final class Repository: NSObject {
-    typealias PokemonInstance = (RemoteDataSource) -> Repository
+    typealias PokemonInstance = (RemoteDataSource, LocalDataSource) -> Repository
     fileprivate let remote: RemoteDataSource
+    fileprivate let local: LocalDataSource
     
-    private init(remote: RemoteDataSource) {
+    init(remote: RemoteDataSource, local: LocalDataSource) {
         self.remote = remote
+        self.local = local
     }
     
-    static let sharedInstance: PokemonInstance = { remote in
-        return Repository(remote: remote)
+    static let sharedInstance: PokemonInstance = { remote, local in
+        return Repository(remote: remote, local: local)
     }
 }
 
 extension Repository: RepositoryProtocol {
+    // MARK: - remote
     func getPokemonList(page: Int) -> Observable<[Int]> {
-        return self.remote.getPokemonList(page: page)
+        return remote.getPokemonList(page: page)
             .compactMap { $0.results?.compactMap({ $0.id }) }
     }
     
     func getPokemonDetail(id: Int) -> Observable<Pokemon> {
-        return self.remote.getPokemonDetail(id: id)
+        return remote.getPokemonDetail(id: id)
+    }
+    
+    // MARK: - local
+    func checkPokemonInCollection(pokemonId: Int) -> Observable<Bool> {
+        return local.checkPokemonInCollection(pokemonId: pokemonId)
+    }
+    
+    func catchPokemon(nickname: String, pokemon: Pokemon) -> Observable<Bool> {
+        return local.catchPokemon(nickname: nickname, pokemon: pokemon)
+    }
+    
+    func releasedPokemon(nickname: String) -> Observable<Bool> {
+        return local.releasedPokemon(nickname: nickname)
+    }
+    
+    func getMyCollections() -> Observable<[PokemonCollection]> {
+        return local.getMyCollections()
     }
 }

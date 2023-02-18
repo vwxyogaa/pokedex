@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class PokemonListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
@@ -47,18 +46,18 @@ class PokemonListCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configureContentMyCollection(myCollection: PokemonCollection) {
+    func configureContentMyCollection(myCollection: PokemonCollection?) {
         var typeTwo: String?
-        if let types = myCollection.pokemon.types, types.count > 1 {
+        if let types = myCollection?.pokemon.types, types.count > 1 {
             typeTwo = types.last?.type?.name?.capitalized
         }
-        self.namePokemonLabel.text = myCollection.pokemon.name?.capitalized
-        self.numberPokemonLabel.text = "(\(myCollection.nickname))"
-        self.typeOnePokemonLabel.text = myCollection.pokemon.types?.first?.type?.name?.capitalized
+        self.namePokemonLabel.text = myCollection?.pokemon.name?.capitalized
+        self.numberPokemonLabel.text = myCollection?.nickname
+        self.typeOnePokemonLabel.text = myCollection?.pokemon.types?.first?.type?.name?.capitalized
         self.typeTwoPokemonLabel.text = typeTwo ?? "-"
-        if let imageUrl = myCollection.pokemon.sprites?.versions?.generationV?.blackWhite?.animated?.frontDefault {
+        if let imageUrl = myCollection?.pokemon.sprites?.versions?.generationV?.blackWhite?.animated?.frontDefault {
             self.pokemonImageView.loadImage(uri: imageUrl, placeholder: getUIImage(named: "pokeball"))
-        } else if let imageUrl = myCollection.pokemon.sprites?.other?.officialArtwork?.frontDefault {
+        } else if let imageUrl = myCollection?.pokemon.sprites?.other?.officialArtwork?.frontDefault {
             self.pokemonImageView.loadImage(uri: imageUrl, placeholder: getUIImage(named: "pokeball"))
         } else {
             self.pokemonImageView.image = getUIImage(named: "pokeball")

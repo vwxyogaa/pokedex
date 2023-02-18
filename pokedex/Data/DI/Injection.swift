@@ -9,14 +9,25 @@ import Foundation
 
 final class Injection {
     func provideDashboardUseCase() -> DashboardUseCaseProtocol {
-        let remoteRepository = provideRepository()
-        return DashboardUseCase(repository: remoteRepository)
+        let repository = provideRepository()
+        return DashboardUseCase(repository: repository)
+    }
+    
+    func provideDetailUeCase() -> DetailUseCaseProtocol {
+        let repository = provideRepository()
+        return DetailUseCase(repository: repository)
+    }
+    
+    func provideMyCollectionsUseCase() -> MyCollectionUseCaseProtocol {
+        let repository = provideRepository()
+        return MyCollectionUseCase(repository: repository)
     }
 }
 
 extension Injection {
     func provideRepository() -> RepositoryProtocol {
         let remoteDataSource = RemoteDataSource()
-        return Repository.sharedInstance(remoteDataSource)
+        let localDataSource = LocalDataSource()
+        return Repository.sharedInstance(remoteDataSource, localDataSource)
     }
 }

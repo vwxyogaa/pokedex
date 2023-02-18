@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import Kingfisher
 import Lottie
+import RxSwift
 
 class DetailPokemonViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
@@ -25,8 +25,8 @@ class DetailPokemonViewController: UIViewController {
     private lazy var baseStatsViewController = BaseStatsViewController()
     private lazy var movesViewController = MovesViewController()
     
-    var pokemonDetail: Pokemon?
-//    var viewModel: DetailPokemonViewModel!
+    private let disposeBag = DisposeBag()
+    var viewModel: DetailPokemonViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +86,7 @@ class DetailPokemonViewController: UIViewController {
     private func configureData(pokemon: Pokemon?) {
         guard let number = pokemon?.id else { return }
         self.numberPokemonLabel.text = "#\(number)"
-//        self.namePokemonLabel.text = (viewModel.nickname != nil) ? "\(pokemon?.name?.capitalized ?? "") (\(viewModel.nickname ?? ""))" : pokemon?.name?.capitalized
+        self.namePokemonLabel.text = (pokemon?.nickName != nil) ? "\(pokemon?.name?.capitalized ?? "") (\(pokemon?.nickName ?? ""))" : pokemon?.name?.capitalized
         if let imageUrl = pokemon?.sprites?.other?.officialArtwork?.frontDefault {
             self.imagePokemon.loadImage(uri: imageUrl, placeholder: getUIImage(named: "pokeball"))
         } else {
@@ -95,17 +95,17 @@ class DetailPokemonViewController: UIViewController {
     }
     
     private func initObservers() {
-//        viewModel.pokemon.observe(on: self) { pokemon in
-//            self.configureData(pokemon: pokemon)
-//            self.aboutViewController.pokemonDetail = pokemon
-//            self.baseStatsViewController.pokemonStats = pokemon?.stats ?? []
-//            self.movesViewController.pokemonMoves = pokemon?.moves ?? []
-//        }
-//
-//        viewModel.isCatched.observe(on: self) { isCatched in
-//            self.updateCatchButton(isCatched: isCatched)
+        viewModel.pokemon.drive(onNext: {[weak self] pokemon in
+            self?.configureData(pokemon: pokemon)
+            self?.aboutViewController.pokemonDetail = pokemon
+            self?.baseStatsViewController.pokemonStats = pokemon?.stats ?? []
+            self?.movesViewController.pokemonMoves = pokemon?.moves ?? []
+        }).disposed(by: disposeBag)
+
+        viewModel.isCatched.drive(onNext: {[weak self] isCatched in
+            self?.updateCatchButton(isCatched: isCatched)
 //            self.namePokemonLabel.text = (self.viewModel.nickname != nil) ? "\(self.viewModel.pokemon.value?.name?.capitalized ?? "") (\(self.viewModel.nickname ?? ""))" : self.viewModel.pokemon.value?.name?.capitalized
-//        }
+        }).disposed(by: disposeBag)
     }
     
     private func dialogSuccessCatch() {
@@ -114,8 +114,8 @@ class DetailPokemonViewController: UIViewController {
             textfield.placeholder = "Type nickname"
         }
         let done = UIAlertAction(title: "Done", style: .default) { _ in
-//            let nickname = dialogMessage.textFields?.first?.text ?? "-"
-//            self.viewModel.catchPokemon(nickname: nickname)
+            let nickname = dialogMessage.textFields?.first?.text ?? "-"
+            self.viewModel.catchPokemon(nickname: nickname)
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         dialogMessage.addAction(done)
@@ -133,7 +133,7 @@ class DetailPokemonViewController: UIViewController {
     private func dialogRelease() {
         let dialogMessage = UIAlertController(title: "", message: "Are you sure you want to release this pokemon?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default) { _ in
-//            self.viewModel.releasedPokemon()
+            self.viewModel.releasedPokemon()
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         dialogMessage.addAction(yes)

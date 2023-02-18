@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class MyCollectionViewController: UIViewController {
     @IBOutlet weak var backgroundContainerView: UIView!
@@ -16,7 +17,8 @@ class MyCollectionViewController: UIViewController {
         return refreshControl
     }()
     
-//    var viewModel: MyCollectionViewModel!
+    private let disposeBag = DisposeBag()
+    var viewModel: MyCollectionViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,7 @@ class MyCollectionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-//        self.viewModel.getMyCollections()
+        self.viewModel.getMyCollections()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,10 +47,15 @@ class MyCollectionViewController: UIViewController {
     }
     
     private func initObservers() {
-//        viewModel.myCollections.observe(on: self) { pokeCollection in
-//            self.pokemonListCollectionView.reloadData()
-//            self.refreshControl.endRefreshing()
-//        }
+        viewModel.pokemons.drive(onNext: {[weak self] pokemon in
+            if pokemon.isEmpty {
+                self?.pokemonListCollectionView.setBackground(imageName: "ic_empty_items", messageImage: "Not Found")
+            } else {
+                self?.pokemonListCollectionView.clearBackground()
+            }
+            self?.pokemonListCollectionView.reloadData()
+            self?.refreshControl.endRefreshing()
+        }).disposed(by: disposeBag)
     }
     
     private func configureBackgroundContainerView() {
@@ -61,6 +68,7 @@ class MyCollectionViewController: UIViewController {
         self.pokemonListCollectionView.register(UINib(nibName: "PokemonListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PokemonListCollectionViewCell")
         self.refreshControl.addTarget(self, action: #selector(self.refreshData), for: .valueChanged)
         self.pokemonListCollectionView.addSubview(refreshControl)
+        self.refreshControl.beginRefreshing()
         self.pokemonListCollectionView.dataSource = self
         self.pokemonListCollectionView.delegate = self
     }
@@ -68,34 +76,27 @@ class MyCollectionViewController: UIViewController {
     // MARK: - action
     @objc
     private func refreshData() {
-        self.refreshControl.beginRefreshing()
-//        self.viewModel.getMyCollections()
+        self.viewModel.refresh()
     }
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension MyCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if (viewModel.myCollections.value.count == 0) {
-//            self.pokemonListCollectionView.setBackground(imageName: "ic_empty_items", messageImage: "You don't have any pokemon in bag")
-//        } else {
-//            self.pokemonListCollectionView.clearBackground()
-//        }
-//        return viewModel.myCollections.value.count
-        return 0
+        return viewModel.pokemonsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonListCollectionViewCell", for: indexPath) as? PokemonListCollectionViewCell else { return UICollectionViewCell() }
-//        let myCollection = viewModel.myCollections.value[indexPath.row]
-//        cell.configureContentMyCollection(myCollection: myCollection)
+        let myCollection = viewModel.pokemon(at: indexPath.row)
+        cell.configureContentMyCollection(myCollection: myCollection)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = DetailPokemonViewController()
-//        let detailPokemonViewModel = DetailPokemonViewModel(myCollection: viewModel.myCollections.value[indexPath.row])
-//        detailViewController.viewModel = detailPokemonViewModel
+        let detailPokemonViewModel = DetailPokemonViewModel(detailUseCase: Injection().provideDetailUeCase(), pokemon: viewModel.pokemon(at: indexPath.row)?.pokemon)
+        detailViewController.viewModel = detailPokemonViewModel
         detailViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }

@@ -6,49 +6,65 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
-//class DetailPokemonViewModel {
-//    private let localRepository = LocalRepository.shared
-//
-////    let pokemon: Observable<Pokemon?> = Observable(nil)
-////    let isCatched: Observable<Bool> = Observable(false)
-//    var nickname: String?
-//
-//    init(pokemon: Pokemon) {
-//        self.pokemon.value = pokemon
-//        self.getStatusPokemonInCollection(pokemonId: pokemon.id)
-//    }
-//
-//    init(myCollection: PokemonCollection) {
-//        self.isCatched.value = true
-//        self.nickname = myCollection.nickname
-//        self.pokemon.value = myCollection.pokemon
-//    }
-//
-//    func catchPokemon(nickname: String) {
-//        guard let pokemon = pokemon.value else { return }
-//        localRepository.catchPokemon(nickname: nickname, pokemon: pokemon)
-//        self.isCatched.value = true
-//        self.nickname = nickname
-//    }
-//
-//    private func getStatusPokemonInCollection(pokemonId: Int?) {
-//        guard let pokemonId else { return }
-//        localRepository.checkPokemonInCollection(pokemonId: pokemonId) { isCatched, nickname in
-//            if isCatched {
-//                self.isCatched.value = true
-//                self.nickname = nickname
-//            } else {
-//                self.isCatched.value = false
-//            }
-//        }
-//    }
-//
-//    func releasedPokemon() {
-//        guard let nickname = nickname else { return }
-//        localRepository.releasedPokemon(nickname: nickname) {
-//            self.isCatched.value = false
-//            self.nickname = nil
-//        }
-//    }
-//}
+class DetailPokemonViewModel: BaseViewModel {
+    private let disposeBag = DisposeBag()
+    private let detailUseCase: DetailUseCaseProtocol
+    
+    private let _isCatched = BehaviorRelay<Bool>(value: false)
+    private let _pokemon = BehaviorRelay<Pokemon?>(value: nil)
+    
+    init(detailUseCase: DetailUseCaseProtocol, pokemon: Pokemon?) {
+        self.detailUseCase = detailUseCase
+        _pokemon.accept(pokemon)
+        super.init()
+        self.checkPokemonInCollection(pokemonId: pokemon?.id)
+    }
+    
+    var pokemon: Driver<Pokemon?> {
+        return _pokemon.asDriver()
+    }
+    
+    var isCatched: Driver<Bool> {
+        return _isCatched.asDriver()
+    }
+    
+    func checkPokemonInCollection(pokemonId: Int?) {
+        guard let pokemonId else { return }
+        detailUseCase.checkPokemonInCollection(pokemonId: pokemonId)
+            .observe(on: MainScheduler.instance)
+            .subscribe { result in
+                self._isCatched.accept(result)
+            } onError: { error in
+                self._errorMessage.accept(error.localizedDescription)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func catchPokemon(nickname: String) {
+        guard var pokemon = _pokemon.value else { return }
+        pokemon.nickName = nickname
+        detailUseCase.catchPokemon(nickname: nickname, pokemon: pokemon)
+            .observe(on: MainScheduler.instance)
+            .subscribe { result in
+                self._isCatched.accept(result)
+            } onError: { error in
+                self._errorMessage.accept(error.localizedDescription)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func releasedPokemon() {
+        guard let nickname = _pokemon.value?.nickName else { return }
+        detailUseCase.releasedPokemon(nickname: nickname)
+            .observe(on: MainScheduler.instance)
+            .subscribe { result in
+                self._isCatched.accept(result)
+            } onError: { error in
+                self._errorMessage.accept(error.localizedDescription)
+            }
+            .disposed(by: disposeBag)
+    }
+}
