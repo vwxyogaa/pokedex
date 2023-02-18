@@ -425,7 +425,6 @@
 			isa = PBXGroup;
 			children = (
 				BCCA0107299E30F10075AA6D /* Remote */,
-				BCCA0108299E30F60075AA6D /* Local */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -436,13 +435,6 @@
 				BCCA0109299E31040075AA6D /* RemoteDataSource.swift */,
 			);
 			path = Remote;
-			sourceTree = "<group>";
-		};
-		BCCA0108299E30F60075AA6D /* Local */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Local;
 			sourceTree = "<group>";
 		};
 		BCD8D380298BD92400C3FA12 /* ViewModel */ = {
