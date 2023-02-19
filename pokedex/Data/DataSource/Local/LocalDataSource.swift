@@ -29,7 +29,7 @@ final class LocalDataSource: LocalDataSourceProtocol {
                     if pokemon.id == pokemonId {
                         observer.onNext(true)
                         observer.onCompleted()
-//                        return
+                        return Disposables.create()
                     }
                 }
                 observer.onNext(false)
