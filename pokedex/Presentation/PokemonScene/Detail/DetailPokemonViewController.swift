@@ -99,7 +99,6 @@ class DetailPokemonViewController: UIViewController {
             self?.aboutViewController.pokemonDetail = pokemon
             self?.baseStatsViewController.pokemonStats = pokemon?.stats ?? []
             self?.movesViewController.pokemonMoves = pokemon?.moves ?? []
-            self?.namePokemonLabel.text = (pokemon?.nickname != nil) ? "\(pokemon?.name?.capitalized ?? "") (\(pokemon?.nickname ?? ""))" : pokemon?.name?.capitalized
         }).disposed(by: disposeBag)
 
         viewModel.isCatched.drive(onNext: {[weak self] isCatched in
