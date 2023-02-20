@@ -17,7 +17,7 @@ struct Pokemon: Codable {
     let abilities: [PokemonAbilities]?
     let stats: [PokemonStats]?
     let moves: [PokemonMoves]?
-    var nickName: String? = "-"
+    var nickname: String? = "-"
     
     var tag: String {
         get {

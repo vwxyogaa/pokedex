@@ -14,7 +14,8 @@ class DetailPokemonViewModel: BaseViewModel {
     private let detailUseCase: DetailUseCaseProtocol
     
     private let _isCatched = BehaviorRelay<Bool>(value: false)
-    private let _pokemon = BehaviorRelay<Pokemon?>(value: nil)
+    let _pokemon = BehaviorRelay<Pokemon?>(value: nil)
+    var nickname: String?
     
     init(detailUseCase: DetailUseCaseProtocol, pokemon: Pokemon?) {
         self.detailUseCase = detailUseCase
@@ -35,7 +36,8 @@ class DetailPokemonViewModel: BaseViewModel {
         guard let pokemonId else { return }
         detailUseCase.checkPokemonInCollection(pokemonId: pokemonId)
             .observe(on: MainScheduler.instance)
-            .subscribe { result in
+            .subscribe { result, nickname in
+                self.nickname = nickname
                 self._isCatched.accept(result)
             } onError: { error in
                 self._errorMessage.accept(error.localizedDescription)
@@ -45,10 +47,11 @@ class DetailPokemonViewModel: BaseViewModel {
     
     func catchPokemon(nickname: String) {
         guard var pokemon = _pokemon.value else { return }
-        pokemon.nickName = nickname
+        pokemon.nickname = nickname
         detailUseCase.catchPokemon(nickname: nickname, pokemon: pokemon)
             .observe(on: MainScheduler.instance)
             .subscribe { result in
+                self.nickname = nickname
                 self._isCatched.accept(result)
             } onError: { error in
                 self._errorMessage.accept(error.localizedDescription)
@@ -57,11 +60,12 @@ class DetailPokemonViewModel: BaseViewModel {
     }
     
     func releasedPokemon() {
-        guard let nickname = _pokemon.value?.nickName else { return }
+        guard let nickname = nickname else { return }
         detailUseCase.releasedPokemon(nickname: nickname)
             .observe(on: MainScheduler.instance)
             .subscribe { result in
-                self._isCatched.accept(result)
+                self.nickname = nil
+                self._isCatched.accept(!result)
             } onError: { error in
                 self._errorMessage.accept(error.localizedDescription)
             }

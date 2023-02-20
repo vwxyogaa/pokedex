@@ -13,7 +13,7 @@ protocol RepositoryProtocol {
     func getPokemonList(page: Int) -> Observable<[Int]>
     func getPokemonDetail(id: Int) -> Observable<Pokemon>
     // MARK: - local
-    func checkPokemonInCollection(pokemonId: Int) -> Observable<Bool>
+    func checkPokemonInCollection(pokemonId: Int) -> Observable<(Bool, String?)>
     func catchPokemon(nickname: String, pokemon: Pokemon) -> Observable<Bool>
     func releasedPokemon(nickname: String) -> Observable<Bool>
     func getMyCollections() -> Observable<[PokemonCollection]>
@@ -46,7 +46,7 @@ extension Repository: RepositoryProtocol {
     }
     
     // MARK: - local
-    func checkPokemonInCollection(pokemonId: Int) -> Observable<Bool> {
+    func checkPokemonInCollection(pokemonId: Int) -> Observable<(Bool, String?)> {
         return local.checkPokemonInCollection(pokemonId: pokemonId)
     }
     

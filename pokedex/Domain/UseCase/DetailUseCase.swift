@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol DetailUseCaseProtocol {
-    func checkPokemonInCollection(pokemonId: Int) -> Observable<Bool>
+    func checkPokemonInCollection(pokemonId: Int) -> Observable<(Bool, String?)>
     func catchPokemon(nickname: String, pokemon: Pokemon) -> Observable<Bool>
     func releasedPokemon(nickname: String) -> Observable<Bool>
 }
@@ -21,7 +21,7 @@ final class DetailUseCase: DetailUseCaseProtocol {
         self.repository = repository
     }
     
-    func checkPokemonInCollection(pokemonId: Int) -> Observable<Bool> {
+    func checkPokemonInCollection(pokemonId: Int) -> Observable<(Bool, String?)> {
         return self.repository.checkPokemonInCollection(pokemonId: pokemonId)
     }
     

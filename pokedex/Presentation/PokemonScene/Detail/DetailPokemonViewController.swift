@@ -84,9 +84,8 @@ class DetailPokemonViewController: UIViewController {
     }
     
     private func configureData(pokemon: Pokemon?) {
-        guard let number = pokemon?.id else { return }
-        self.numberPokemonLabel.text = "#\(number)"
-        self.namePokemonLabel.text = (pokemon?.nickName != nil) ? "\(pokemon?.name?.capitalized ?? "") (\(pokemon?.nickName ?? ""))" : pokemon?.name?.capitalized
+        self.numberPokemonLabel.text = pokemon?.tag
+        self.namePokemonLabel.text = (pokemon?.nickname != nil) ? "\(pokemon?.name?.capitalized ?? "") (\(pokemon?.nickname ?? ""))" : pokemon?.name?.capitalized
         if let imageUrl = pokemon?.sprites?.other?.officialArtwork?.frontDefault {
             self.imagePokemon.loadImage(uri: imageUrl, placeholder: getUIImage(named: "pokeball"))
         } else {
@@ -104,7 +103,7 @@ class DetailPokemonViewController: UIViewController {
 
         viewModel.isCatched.drive(onNext: {[weak self] isCatched in
             self?.updateCatchButton(isCatched: isCatched)
-//            self.namePokemonLabel.text = (self.viewModel.nickname != nil) ? "\(self.viewModel.pokemon.value?.name?.capitalized ?? "") (\(self.viewModel.nickname ?? ""))" : self.viewModel.pokemon.value?.name?.capitalized
+            self?.namePokemonLabel.text = (self?.viewModel.nickname != nil) ? "\(self?.viewModel._pokemon.value?.name?.capitalized ?? "") (\(self?.viewModel.nickname ?? ""))" : self?.viewModel._pokemon.value?.name?.capitalized
         }).disposed(by: disposeBag)
     }
     

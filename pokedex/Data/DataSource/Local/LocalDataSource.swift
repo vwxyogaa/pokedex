@@ -10,29 +10,29 @@ import UIKit
 import CoreData
 
 protocol LocalDataSourceProtocol {
-    func checkPokemonInCollection(pokemonId: Int) -> Observable<Bool>
+    func checkPokemonInCollection(pokemonId: Int) -> Observable<(Bool, String?)>
     func catchPokemon(nickname: String, pokemon: Pokemon) -> Observable<Bool>
     func releasedPokemon(nickname: String) -> Observable<Bool>
     func getMyCollections() -> Observable<[PokemonCollection]>
 }
 
 final class LocalDataSource: LocalDataSourceProtocol {
-    func checkPokemonInCollection(pokemonId: Int) -> Observable<Bool> {
-        return Observable<Bool>.create { observer in
+    func checkPokemonInCollection(pokemonId: Int) -> Observable<(Bool, String?)> {
+        return Observable<(Bool, String?)>.create { observer in
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return Disposables.create() }
             let managedContext = appDelegate.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MyCollection")
             do {
                 let result = try managedContext.fetch(fetchRequest)
                 for data in result as! [NSManagedObject] {
-                    guard let pokemonData = data.value(forKey: "pokemon") as? Data, let pokemon = Utils.getPokemonFromData(data: pokemonData) else { return Disposables.create() }
+                    guard let nickname = data.value(forKey: "nickname") as? String, let pokemonData = data.value(forKey: "pokemon") as? Data, let pokemon = Utils.getPokemonFromData(data: pokemonData) else { return Disposables.create() }
                     if pokemon.id == pokemonId {
-                        observer.onNext(true)
+                        observer.onNext((true, nickname))
                         observer.onCompleted()
                         return Disposables.create()
                     }
                 }
-                observer.onNext(false)
+                observer.onNext((false, nil))
                 observer.onCompleted()
             } catch {
                 observer.onError(DatabaseError.requestFailed)
