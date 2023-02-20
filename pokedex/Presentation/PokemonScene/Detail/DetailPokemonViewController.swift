@@ -165,7 +165,7 @@ class DetailPokemonViewController: UIViewController {
     @objc
     private func catchButtonClicked(_ sender: UIButton) {
         if sender.tag == 0 {
-            let catchPokemon = true
+            let catchPokemon = Bool.random()
             catchButton.isEnabled = false
             containerPokeballAnimationView.isHidden = false
             pokeballAnimationView.play(fromProgress: 0, toProgress: 1, loopMode: .repeat(2)) { _ in
