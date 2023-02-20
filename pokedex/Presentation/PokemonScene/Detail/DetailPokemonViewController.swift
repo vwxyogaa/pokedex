@@ -99,10 +99,7 @@ class DetailPokemonViewController: UIViewController {
             self?.aboutViewController.pokemonDetail = pokemon
             self?.baseStatsViewController.pokemonStats = pokemon?.stats ?? []
             self?.movesViewController.pokemonMoves = pokemon?.moves ?? []
-        }).disposed(by: disposeBag)
-
-        viewModel.isCatched.drive(onNext: {[weak self] isCatched in
-            self?.updateCatchButton(isCatched: isCatched)
+            self?.updateCatchButton(isCatched: pokemon?.nickname != nil)
         }).disposed(by: disposeBag)
     }
     
@@ -164,7 +161,7 @@ class DetailPokemonViewController: UIViewController {
     @objc
     private func catchButtonClicked(_ sender: UIButton) {
         if sender.tag == 0 {
-            let catchPokemon = Bool.random()
+            let catchPokemon = true
             catchButton.isEnabled = false
             containerPokeballAnimationView.isHidden = false
             pokeballAnimationView.play(fromProgress: 0, toProgress: 1, loopMode: .repeat(2)) { _ in

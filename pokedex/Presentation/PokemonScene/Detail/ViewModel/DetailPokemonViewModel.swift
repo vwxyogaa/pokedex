@@ -13,7 +13,6 @@ class DetailPokemonViewModel: BaseViewModel {
     private let disposeBag = DisposeBag()
     private let detailUseCase: DetailUseCaseProtocol
     
-    private let _isCatched = BehaviorRelay<Bool>(value: false)
     private let _pokemon = BehaviorRelay<Pokemon?>(value: nil)
     
     init(detailUseCase: DetailUseCaseProtocol, pokemon: Pokemon?) {
@@ -27,10 +26,6 @@ class DetailPokemonViewModel: BaseViewModel {
         return _pokemon.asDriver()
     }
     
-    var isCatched: Driver<Bool> {
-        return _isCatched.asDriver()
-    }
-    
     func checkPokemonInCollection(pokemonId: Int?) {
         guard let pokemonId else { return }
         detailUseCase.checkPokemonInCollection(pokemonId: pokemonId)
@@ -39,7 +34,6 @@ class DetailPokemonViewModel: BaseViewModel {
                 var pokemonWithNick = self._pokemon.value
                 pokemonWithNick?.nickname = nickname
                 self._pokemon.accept(pokemonWithNick)
-                self._isCatched.accept(result)
             } onError: { error in
                 self._errorMessage.accept(error.localizedDescription)
             }
@@ -55,7 +49,6 @@ class DetailPokemonViewModel: BaseViewModel {
                 var pokemonWithNick = pokemon
                 pokemonWithNick.nickname = nickname
                 self._pokemon.accept(pokemonWithNick)
-                self._isCatched.accept(result)
             } onError: { error in
                 self._errorMessage.accept(error.localizedDescription)
             }
@@ -70,7 +63,6 @@ class DetailPokemonViewModel: BaseViewModel {
                 var pokemonWithNick = self._pokemon.value
                 pokemonWithNick?.nickname = nil
                 self._pokemon.accept(pokemonWithNick)
-                self._isCatched.accept(!result)
             } onError: { error in
                 self._errorMessage.accept(error.localizedDescription)
             }
