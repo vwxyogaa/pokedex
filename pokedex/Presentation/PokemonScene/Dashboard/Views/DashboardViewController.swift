@@ -70,7 +70,7 @@ class DashboardViewController: UIViewController {
         pokemonSearchTextField.layer.masksToBounds = true
         pokemonSearchTextField.attributedPlaceholder = NSAttributedString(
             string: "Search",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.label]
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "TypePokemonColor")!]
         )
         
         pokemonSearchTextField.delegate = self
