@@ -198,19 +198,20 @@
 			children = (
 				BCCA0106299E30E30075AA6D /* DataSource */,
 				BCCA0100299E2E8C0075AA6D /* DI */,
-				BC5887EF299B834F00C821BF /* PersistenceStorage */,
+				BC5887EF299B834F00C821BF /* PersistentStorage */,
 				BC9A689D298BC0D70027A87F /* Repository */,
+				BCCA00FD299E2D560075AA6D /* Network */,
 				BCCA0111299E3A860075AA6D /* BaseViewModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
 		};
-		BC5887EF299B834F00C821BF /* PersistenceStorage */ = {
+		BC5887EF299B834F00C821BF /* PersistentStorage */ = {
 			isa = PBXGroup;
 			children = (
 				BC5B38392993AA7000E8BCDA /* pokedex.xcdatamodeld */,
 			);
-			path = PersistenceStorage;
+			path = PersistentStorage;
 			sourceTree = "<group>";
 		};
 		BC5887F6299B8B3F00C821BF /* Domain */ = {
@@ -305,7 +306,6 @@
 				BC5887F6299B8B3F00C821BF /* Domain */,
 				BC5887F9299B8C1A00C821BF /* Presentation */,
 				BC5887EE299B82FB00C821BF /* Data */,
-				BCCA00FD299E2D560075AA6D /* Networking */,
 				BC5887F8299B8B9A00C821BF /* Utilities */,
 				BC9A689C298BBF970027A87F /* Supporting Files */,
 				BC9A684C298934320027A87F /* LaunchScreen.storyboard */,
@@ -375,12 +375,12 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		BCCA00FD299E2D560075AA6D /* Networking */ = {
+		BCCA00FD299E2D560075AA6D /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				BCCA00FE299E2D700075AA6D /* APIManager.swift */,
 			);
-			path = Networking;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		BCCA0100299E2E8C0075AA6D /* DI */ = {
