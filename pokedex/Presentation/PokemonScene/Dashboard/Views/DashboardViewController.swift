@@ -10,6 +10,7 @@ import RxSwift
 
 class DashboardViewController: UIViewController {
     @IBOutlet weak var backgroundContainerView: UIView!
+    @IBOutlet weak var pokemonSearchTextField: UITextField!
     @IBOutlet weak var pokemonListCollectionView: UICollectionView!
     
     private lazy var refreshControl: UIRefreshControl = {
@@ -42,6 +43,7 @@ class DashboardViewController: UIViewController {
     
     private func configureViews() {
         configureBackgroundContainerView()
+        configureSearchTextField()
         configureCollectionView()
     }
     
@@ -61,6 +63,25 @@ class DashboardViewController: UIViewController {
         backgroundContainerView.clipsToBounds = true
         backgroundContainerView.layer.cornerRadius = 10
         backgroundContainerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+    }
+    
+    private func configureSearchTextField() {
+        pokemonSearchTextField.layer.cornerRadius = 10
+        pokemonSearchTextField.layer.masksToBounds = true
+        pokemonSearchTextField.attributedPlaceholder = NSAttributedString(
+            string: "Search",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.label]
+        )
+        
+        pokemonSearchTextField.delegate = self
+        pokemonSearchTextField.rx.text
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { value in
+                self.viewModel.searchPokemons(query: value)
+                let onSearch = !(value?.isEmpty == true)
+                self.pokemonListCollectionView.refreshControl = onSearch ? nil : self.refreshControl
+            })
+            .disposed(by: disposeBag)
     }
     
     private func configureCollectionView() {
@@ -113,5 +134,21 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension DashboardViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return true
     }
 }

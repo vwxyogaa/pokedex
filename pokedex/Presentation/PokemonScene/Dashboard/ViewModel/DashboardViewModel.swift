@@ -45,6 +45,10 @@ class DashboardViewModel: BaseViewModel {
         getPokemonList()
     }
     
+    private var isSearch: Bool {
+        return _pokemons.value.count <= pokemonResultsCount - 1
+    }
+    
     func getPokemonList() {
         dashboardUseCase.getPokemonList(page: page)
             .observe(on: MainScheduler.instance)
@@ -74,11 +78,20 @@ class DashboardViewModel: BaseViewModel {
     }
     
     func loadNextPage(index: Int) {
-        if !canLoadNextPage {
+        if !canLoadNextPage && !isSearch {
             if _pokemons.value.count - 2 == index {
                 canLoadNextPage = true
                 getPokemonList()
             }
         }
+    }
+    
+    func searchPokemons(query: String?) {
+        guard let query, !query.isEmpty else {
+            _pokemons.accept(pokemonResults)
+            return
+        }
+        let filterPokemon = pokemonResults.filter { $0.name?.lowercased().contains(query.lowercased()) == true }
+        _pokemons.accept(filterPokemon)
     }
 }
