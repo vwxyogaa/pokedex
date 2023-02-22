@@ -12,6 +12,7 @@ Pokedex is an application that can display pokemon information. in this app we c
 * [Kingfisher](https://github.com/onevcat/Kingfisher)
 * [Lottie](https://github.com/airbnb/lottie-ios)
 * [Netfox](https://github.com/kasketis/netfox)
+* [RxSwift](https://github.com/ReactiveX/RxSwift)
 
 ### API ###
 * [Pokemon API](https://pokeapi.co)
