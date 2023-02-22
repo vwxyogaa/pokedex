@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "pokeball.png",
+      "filename" : "pngegg.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "pokeball@2x.png",
+      "filename" : "pngegg@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "pokeball@3x.png",
+      "filename" : "pngegg@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
