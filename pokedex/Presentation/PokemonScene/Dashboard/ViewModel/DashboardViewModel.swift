@@ -73,6 +73,8 @@ class DashboardViewModel: BaseViewModel {
                     self.canLoadNextPage = false
                     self._pokemons.accept(self.pokemonResults.sorted { $0.id ?? 0 < $1.id ?? 0})
                 }
+            } onError: { error in
+                self._errorMessage.accept(error.localizedDescription)
             }
             .disposed(by: disposeBag)
     }
