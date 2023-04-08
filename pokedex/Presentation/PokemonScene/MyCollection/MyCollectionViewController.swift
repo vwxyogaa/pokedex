@@ -49,7 +49,7 @@ class MyCollectionViewController: UIViewController {
     }
     
     private func initObservers() {
-        viewModel.pokemons.drive(onNext: {[weak self] pokemon in
+        viewModel.pokemons.drive(onNext: { [weak self] pokemon in
             if pokemon.isEmpty {
                 self?.pokemonListCollectionView.setBackground(imageName: "ic_empty_items", messageImage: "Not Found")
             } else {
@@ -57,6 +57,10 @@ class MyCollectionViewController: UIViewController {
             }
             self?.pokemonListCollectionView.reloadData()
             self?.refreshControl.endRefreshing()
+        }).disposed(by: disposeBag)
+        
+        viewModel.isLoading.drive(onNext: { [weak self] isLoading in
+            self?.manageLoadingActivity(isLoading: isLoading)
         }).disposed(by: disposeBag)
     }
     

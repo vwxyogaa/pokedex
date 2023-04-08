@@ -26,6 +26,7 @@ class DetailPokemonViewModel: BaseViewModel {
     }
     
     func checkPokemonInCollection(pokemonId: Int?) {
+        self._isLoading.accept(true)
         guard let pokemonId else { return }
         detailUseCase.checkPokemonInCollection(pokemonId: pokemonId)
             .observe(on: MainScheduler.instance)
@@ -35,6 +36,8 @@ class DetailPokemonViewModel: BaseViewModel {
                 self._pokemon.accept(pokemonWithNick)
             } onError: { error in
                 self._errorMessage.accept(error.localizedDescription)
+            } onCompleted: {
+                self._isLoading.accept(false)
             }
             .disposed(by: disposeBag)
     }
@@ -55,6 +58,7 @@ class DetailPokemonViewModel: BaseViewModel {
     }
     
     func releasedPokemon() {
+        self._isLoading.accept(true)
         guard let nickname = _pokemon.value?.nickname else { return }
         detailUseCase.releasedPokemon(nickname: nickname)
             .observe(on: MainScheduler.instance)
@@ -64,6 +68,8 @@ class DetailPokemonViewModel: BaseViewModel {
                 self._pokemon.accept(pokemonWithNick)
             } onError: { error in
                 self._errorMessage.accept(error.localizedDescription)
+            } onCompleted: {
+                self._isLoading.accept(false)
             }
             .disposed(by: disposeBag)
     }

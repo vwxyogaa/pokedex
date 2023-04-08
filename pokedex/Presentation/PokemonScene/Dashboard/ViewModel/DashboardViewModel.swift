@@ -49,6 +49,7 @@ class DashboardViewModel: BaseViewModel {
     }
     
     func getPokemonList() {
+        self._isLoading.accept(true)
         dashboardUseCase.getPokemonList(page: page)
             .observe(on: MainScheduler.instance)
             .subscribe { result in
@@ -58,11 +59,14 @@ class DashboardViewModel: BaseViewModel {
                 }
             } onError: { error in
                 self._errorMessage.accept(error.localizedDescription)
+            } onCompleted: {
+                self._isLoading.accept(false)
             }
             .disposed(by: disposeBag)
     }
     
     func getPokemonDetail(id: Int) {
+        self._isLoading.accept(true)
         dashboardUseCase.getPokemonDetail(id: id)
             .observe(on: MainScheduler.instance)
             .subscribe { result in
@@ -74,6 +78,8 @@ class DashboardViewModel: BaseViewModel {
                 }
             } onError: { error in
                 self._errorMessage.accept(error.localizedDescription)
+            } onCompleted: {
+                self._isLoading.accept(false)
             }
             .disposed(by: disposeBag)
     }
@@ -92,7 +98,9 @@ class DashboardViewModel: BaseViewModel {
             _pokemons.accept(pokemonResults)
             return
         }
-        let filterPokemon = pokemonResults.filter { $0.name?.lowercased().contains(query.lowercased()) == true }
+        let filterPokemon = pokemonResults.filter {
+            $0.name?.lowercased().contains(query.lowercased()) == true
+        }
         _pokemons.accept(filterPokemon)
     }
 }

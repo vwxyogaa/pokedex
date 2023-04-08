@@ -36,12 +36,15 @@ class MyCollectionViewModel: BaseViewModel {
     }
     
     func getMyCollections() {
+        self._isLoading.accept(true)
         myCollectionUseCase.getMyCollections()
             .observe(on: MainScheduler.instance)
             .subscribe { result in
                 self._pokemon.accept(result)
             } onError: { error in
                 self._errorMessage.accept(error.localizedDescription)
+            } onCompleted: {
+                self._isLoading.accept(false)
             }
             .disposed(by: disposeBag)
     }
