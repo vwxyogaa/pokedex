@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - convert rgb to hex
+// MARK: - Convert RGB to HEX
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
@@ -25,7 +25,7 @@ extension UIColor {
     }
 }
 
-// MARK: - color assets
+// MARK: - Color Assets
 extension UIColor {
     /// #37A5C6 Dark Blue
     static var darkBlueColor: UIColor = UIColor(rgb: 0x37A5C6)

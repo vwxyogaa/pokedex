@@ -21,6 +21,7 @@ class DashboardViewController: UIViewController {
     private let disposeBag = DisposeBag()
     var viewModel: DashboardViewModel!
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
@@ -41,6 +42,7 @@ class DashboardViewController: UIViewController {
         traitCollection.userInterfaceStyle == .dark ? .darkContent : .lightContent
     }
     
+    // MARK: - Helpers
     private func configureViews() {
         configureBackgroundContainerView()
         configureSearchTextField()
@@ -93,7 +95,7 @@ class DashboardViewController: UIViewController {
         self.pokemonListCollectionView.delegate = self
     }
     
-    // MARK: - action
+    // MARK: - Action
     @objc
     private func refreshData() {
         self.viewModel.refresh()

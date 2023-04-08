@@ -9,10 +9,10 @@ import Foundation
 import RxSwift
 
 protocol RepositoryProtocol {
-    // MARK: - remote
+    // MARK: - Remote
     func getPokemonList(page: Int) -> Observable<[Int]>
     func getPokemonDetail(id: Int) -> Observable<Pokemon>
-    // MARK: - local
+    // MARK: - Locale
     func checkPokemonInCollection(pokemonId: Int) -> Observable<(Bool, String?)>
     func catchPokemon(nickname: String, pokemon: Pokemon) -> Observable<Bool>
     func releasedPokemon(nickname: String) -> Observable<Bool>
@@ -35,7 +35,7 @@ final class Repository: NSObject {
 }
 
 extension Repository: RepositoryProtocol {
-    // MARK: - remote
+    // MARK: - Remote
     func getPokemonList(page: Int) -> Observable<[Int]> {
         return remote.getPokemonList(page: page)
             .compactMap { $0.results?.compactMap({ $0.id }) }
@@ -45,7 +45,7 @@ extension Repository: RepositoryProtocol {
         return remote.getPokemonDetail(id: id)
     }
     
-    // MARK: - local
+    // MARK: - Locale
     func checkPokemonInCollection(pokemonId: Int) -> Observable<(Bool, String?)> {
         return local.checkPokemonInCollection(pokemonId: pokemonId)
     }

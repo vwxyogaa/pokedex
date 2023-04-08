@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-// MARK: - get image
+// MARK: - Get Image
 extension UIView {
     func getUIImage(named: String) -> UIImage {
         return UIImage(named: named) ?? UIImage(systemName: "minus.circle.fill")!

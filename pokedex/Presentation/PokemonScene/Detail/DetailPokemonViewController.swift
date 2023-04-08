@@ -28,6 +28,7 @@ class DetailPokemonViewController: UIViewController {
     private let disposeBag = DisposeBag()
     var viewModel: DetailPokemonViewModel!
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
@@ -48,6 +49,7 @@ class DetailPokemonViewController: UIViewController {
         traitCollection.userInterfaceStyle == .dark ? .darkContent : .lightContent
     }
     
+    // MARK: - Helpers
     private func configureViews() {
         configureBackButton()
         configureStatsBackgroundView()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - loading
+// MARK: - Manage Loading
 extension UIViewController {
     func manageLoadingActivity(isLoading: Bool) {
         if isLoading {
@@ -26,7 +26,7 @@ extension UIViewController {
     }
 }
 
-// MARK: - get image
+// MARK: - Get Image
 extension UIViewController {
     func getUIImage(named: String) -> UIImage {
         return UIImage(named: named) ?? UIImage(systemName: "minus.circle.fill")!

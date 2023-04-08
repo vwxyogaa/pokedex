@@ -20,6 +20,7 @@ class MyCollectionViewController: UIViewController {
     private let disposeBag = DisposeBag()
     var viewModel: MyCollectionViewModel!
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
@@ -41,6 +42,7 @@ class MyCollectionViewController: UIViewController {
         traitCollection.userInterfaceStyle == .dark ? .darkContent : .lightContent
     }
     
+    // MARK: - Helpers
     private func configureViews() {
         configureBackgroundContainerView()
         configureCollectionView()
@@ -73,7 +75,7 @@ class MyCollectionViewController: UIViewController {
         self.pokemonListCollectionView.delegate = self
     }
     
-    // MARK: - action
+    // MARK: - Action
     @objc
     private func refreshData() {
         self.viewModel.refresh()

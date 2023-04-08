@@ -5,13 +5,17 @@
 //  Created by Panji Yoga on 16/02/23.
 //
 
-import Foundation
 import RxRelay
+import RxCocoa
 
 class BaseViewModel {
     let _isLoading = BehaviorRelay<Bool>(value: false)
     let _errorMessage = BehaviorRelay<String?>(value: nil)
     
-    var isLoading: Bool { return _isLoading.value }
-    var errorMessage: String? { return _errorMessage.value }
+    var isLoading: Driver<Bool> {
+        return _isLoading.asDriver()
+    }
+    var errorMessage: Driver<String?> {
+        return _errorMessage.asDriver()
+    }
 }
