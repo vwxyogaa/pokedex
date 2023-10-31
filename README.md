@@ -18,4 +18,4 @@ MVVM(Model View ViewModel) + Clean Architecture
 * [Pokemon API](https://pokeapi.co)
 
 ### Screenshots ###
-<img src="screenshots/1.png" width="200"> <img src="screenshots/2.png" width="200"> <img src="screenshots/3.png" width="200"> <img src="screenshots/4.png" width="200">
+![pokedex](https://github.com/vwxyogaa/pokedex/assets/86284991/546c9b56-1049-46e4-b3ac-a5ee67f8406b)
